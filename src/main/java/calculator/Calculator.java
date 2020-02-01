@@ -8,30 +8,21 @@ public class Calculator {
     private double value = 0;
 
     public double execute(String action) {
-        String[] items = action.split("\\s*,\\s*");
-        List<String> container = Arrays.asList(items);
-        int switchInfoNumber = 0;
+        String[] items = action.split(" ");
 
-        if (items[0] == "+") {
-            switchInfoNumber = 1;
-        } else if (items[0] == "-") {
-            switchInfoNumber = 2;
-        } else if (items[0] == "*") {
-            switchInfoNumber = 3;
-        } else if (items[0] == "/") {
-            switchInfoNumber = 4;
-        }
+        String aritmeticChar = items[0];
+        double numer = Double.parseDouble(items[1]);
 
-        switch (switchInfoNumber) {
-            case 1:
-                return addNumber(items[2]);
-            case 2:
-             return   substractNumber(items[2]);
-            case 3:
-               return multiplyNumbers(items[2]);
+        switch (aritmeticChar) {
+            case "+":
+                return addNumber(numer);
+            case "-":
+             return   substractNumber(numer);
+            case "*":
+               return multiplyNumbers(numer);
 
-            case 4:
-               return divideNumbers(items[2]);
+            case "/":
+               return divideNumbers(numer);
 
             default:
                return 0;
@@ -39,24 +30,20 @@ public class Calculator {
         }
     }
 
-    public double addNumber(String add) {
-        double i = Double.parseDouble(add.trim());
-        return value += i;
+    public double addNumber(double number) {
+        return value += number;
     }
 
-    public double substractNumber(String substract) {
-        double i = Double.parseDouble(substract.trim());
-        return value-i;
+    public double substractNumber(double number) {
+        return value-number;
     }
 
-    public double multiplyNumbers(String multiply) {
-        double i = Double.parseDouble(multiply.trim());
-        return value*i;
+    public double multiplyNumbers(double number) {
+        return value*number;
     }
 
-    public double divideNumbers(String divide) {
-        double i = Double.parseDouble(divide.trim());
-        return value/i;
+    public double divideNumbers(double number) {
+        return value/number;
     }
 
 
