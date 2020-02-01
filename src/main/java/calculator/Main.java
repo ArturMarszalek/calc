@@ -14,18 +14,23 @@ public class Main {
             try {
                 System.out.println("Co zrobic: ");
                 result = scanner.nextLine();
-                if (result.equals("exit")){
+                if (result.equals("exit")) {
                     break;
                 }
                 if (result.equals("total")) {
-                    calculator.total();
+                    System.out.println(calculator.getResult());
                     continue;
                 }
+
                 calculator.execute(result);
+
+            } catch (UnsupportedPatternOpperation e) {
+                System.out.println("Operation dont match pattern");
             } catch (Exception e) {
-                System.out.println("Nie poprawna operacja");
+                System.out.println("Incorrect operation");
             }
+
         }
+
     }
 }
-
