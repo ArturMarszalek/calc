@@ -9,16 +9,16 @@ public class Calculator {
         double numberFromSplitting = Double.parseDouble(splittedString[1]);
         switch (splittedString[0]) {
             case "+":
-                result = numberFromSplitting;
+                result += numberFromSplitting;
                 return result;
             case "-":
-                result = numberFromSplitting * -1;
+                result -= numberFromSplitting ;
                 return result;
             case "*":
-                result = result * numberFromSplitting;
+                result *= numberFromSplitting;
                 return result;
             case "/":
-                result = result / numberFromSplitting;
+                result /= numberFromSplitting;
                 return result;
             default:
                 return 0;
