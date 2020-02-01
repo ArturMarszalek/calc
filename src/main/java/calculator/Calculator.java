@@ -9,7 +9,7 @@ public class Calculator {
 
     public double execute(String action) {
 
-        if (action.equals("exit")||action.equals("total")) {
+        if (action.equals("total")) {
             return value;
         }
             String[] items = action.split(" ");

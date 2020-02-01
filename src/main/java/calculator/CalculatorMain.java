@@ -11,12 +11,12 @@ public class CalculatorMain {
             System.out.println("Działanie: ");
             String dzialanie = scanner.nextLine();
             if (dzialanie.equals("exit")) {
-                loop = false;
+                break;
             }
             try {
                 System.out.println(calculator.execute(dzialanie));
-            }catch (ArrayIndexOutOfBoundsException e){
-                System.out.println("Nazwa nie poprawna");
+            }catch (Exception e){
+                System.out.println("Błąd! Nazwa nie poprawna.");
             }
         }
     }
