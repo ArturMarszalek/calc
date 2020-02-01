@@ -1,15 +1,21 @@
 package calculator;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Calculator {
     double value = 0;
 
-    public  double execute(String command) throws Exception {
+    public double execute(String command) throws Exception {
 
-        String[] splittedCommand = command.split(" ");
-        if (splittedCommand.length != 2) {
-            throw new Exception("Nieprawidłowe działanie");
+        Pattern pattern = Pattern.compile("[\\+,\\-,\\*,\\/] [\\d,.]+");
+        Matcher matcher = pattern.matcher(command);
+
+        if (!matcher.find()) {
+            throw new UnsupportedCalculatorOperationsException("Niepoprawne dane (UnsupportedCalculatonOperationsExecutions)");
         }
+        String[] splittedCommand = matcher.group().split(" ");
 
         String operator = splittedCommand[0];
         String number = splittedCommand[1];
@@ -27,8 +33,6 @@ public class Calculator {
             case "/":
                 value /= Double.parseDouble(number);
                 return value;
-//            default:
-//                throw new Exception("Nieprawidłowe działanie");
         }
         return 0;
 

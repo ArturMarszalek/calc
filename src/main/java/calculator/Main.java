@@ -3,7 +3,7 @@ package calculator;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         Scanner scanner = new Scanner(System.in);
         Calculator calculator = new Calculator();
@@ -18,12 +18,11 @@ public class Main {
                     break;
                 }
                 System.out.println("\nWynik = "+calculator.execute(operation));
+            } catch (UnsupportedCalculatorOperationsException e) {
+                System.out.println(e.getMessage());
             } catch (Exception e) {
-                System.out.println("Niepoprwane działanie");
+                System.out.println("błąd");
             }
-
-
         }
-
     }
 }
