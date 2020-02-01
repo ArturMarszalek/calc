@@ -17,7 +17,8 @@ public class Main {
                 System.out.println("Wynik działania " + calculator.execute(userChoice));
 
                 if (userChoice.equals("total")) {
-                    System.out.println(userChoice);
+                    calculator.total();
+                    continue;
                 }
 
                 if (userChoice.equals("exit")) {
