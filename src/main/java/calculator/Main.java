@@ -10,20 +10,20 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
 
+        System.out.println();
+
+        System.out.println("=============================================");
+
+        System.out.println("Wybierz komendę:");
+        System.out.println("exit - zakończenie programu");
+        System.out.println("total - pobiera wynik z kalkulatora");
+        System.out.println("[+ - * /] [liczba]");
+
+        System.out.println("=============================================");
+
+        System.out.println();
+
         while (loop) {
-
-            System.out.println();
-
-            System.out.println("=============================================");
-
-            System.out.println("Wybierz komendę:");
-            System.out.println("exit - zakończenie programu");
-            System.out.println("total - pobiera wynik z kalkulatora");
-            System.out.println("[+ - * /] [liczba]");
-
-            System.out.println("=============================================");
-
-            System.out.println();
 
             String command = scanner.nextLine();
 
@@ -40,7 +40,7 @@ public class Main {
                     try {
                         calculator.execute(command);
                         System.out.println("Operacja została wykonana!");
-                    } catch (Exception e) {
+                    } catch (UnsupportedCommandException e) {
                         System.out.println("Niewłaściwa komenda!");
                     }
                     break;

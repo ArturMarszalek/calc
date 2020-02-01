@@ -1,6 +1,9 @@
 package calculator;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Calculator {
 
     private double result;
@@ -9,9 +12,17 @@ public class Calculator {
         result = 0;
     }
 
-    public double execute(String command) {
+    public double execute(String command) throws UnsupportedCommandException {
 
-        String[] split = command.split(" ");
+        Pattern p = Pattern.compile("^[\\+\\-\\*\\/] \\d*\\.?\\d+$");
+
+        Matcher m = p.matcher(command);
+
+        if (!m.find()) {
+            throw new UnsupportedCommandException("Niepoprawna komenda!");
+        }
+
+        String[] split = m.group().split(" ");
 
         double value = Double.parseDouble(split[1]);
 
@@ -19,27 +30,24 @@ public class Calculator {
 
             case "+":
                 result += value;
-                break;
+                return result;
 
             case "-":
                 result -= value;
-                break;
+                return result;
 
             case "*":
                 result *= value;
-                break;
+                return result;
 
             case "/":
                 result /= value;
-                break;
+                return result;
 
             default:
-                System.out.println("Nie podano operatora!");
-                break;
+                throw new UnsupportedCommandException("Nie podano operatora!");
 
         }
-
-        return result;
     }
 
     public double getResult() {

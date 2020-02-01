@@ -15,37 +15,38 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddNumber() {
+    void shouldAddNumber() throws UnsupportedCommandException {
         //given
-
+        calculator.execute("+ 4");
         //when
-        double result = calculator.execute("+ 4");
+        double result = calculator.getResult();
         //then
         assertThat(result).isEqualTo(4);
     }
 
     @Test
-    void shouldSubtractNumber() {
+    void shouldSubtractNumber() throws UnsupportedCommandException {
         //given
-
+        calculator.execute("- 7");
         //when
-        double result = calculator.execute("- 7");
+        double result = calculator.getResult();
         //then
         assertThat(result).isEqualTo(-7);
     }
 
     @Test
-    void shouldMultiplyNumbers() {
+    void shouldMultiplyNumbers() throws UnsupportedCommandException {
         //given
         calculator.execute("+ 3.5");
+        calculator.execute("* 3");
         //when
-        double result = calculator.execute("* 3");
+        double result = calculator.getResult();
         //then
         assertThat(result).isEqualTo(10.5);
     }
 
     @Test
-    void shouldDivideNumbers() {
+    void shouldDivideNumbers() throws UnsupportedCommandException {
         //given
         calculator.execute("+ 7.5");
         //when
