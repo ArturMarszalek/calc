@@ -15,7 +15,7 @@ public class Main {
                 System.out.println("Wpisz polecenie: ");
                 String out = scanner.nextLine();
                 if(out.equals("total")){
-                    System.out.println(calculator.total());
+                    System.out.println("suma: " +calculator.total());
                     continue;
                 }
                 if(!out.equals("exit")){
