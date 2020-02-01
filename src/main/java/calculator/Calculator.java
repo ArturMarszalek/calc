@@ -38,7 +38,7 @@ public class Calculator {
     }
 
     private void validCommand(String command) throws UnsupportedCalculatorOperationsException {
-        Pattern pattern = Pattern.compile("[\\+\\-\\*\\/] [\\d\\.?d+]");
+        Pattern pattern = Pattern.compile("[\\+\\-\\*\\/] [\\d,.]+");
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {
