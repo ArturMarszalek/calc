@@ -2,9 +2,9 @@ package calculator;
 
 
 public class Calculator {
-    static double value = 0;
+    double value = 0;
 
-    public static double execute(String command) throws Exception {
+    public  double execute(String command) throws Exception {
 
         String[] splittedCommand = command.split(" ");
         if (splittedCommand.length != 2) {
