@@ -7,6 +7,8 @@ public class Calculator {
         String[] splittedCommand = command.split(" ");
         String operator = splittedCommand[0];
         String number = splittedCommand[1];
+
+
         switch (operator) {
             case "+":
                 value += Double.parseDouble(number);
@@ -19,6 +21,8 @@ public class Calculator {
                 break;
             case "/":
                 value /= Double.parseDouble(number);
+                break;
+            default:
                 break;
         }
         return value;
