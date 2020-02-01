@@ -1,39 +1,32 @@
 package calculator;
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class Calculator {
 
-    double wynik = 0;
+    HashMap<String, ICalculatorActionStrategy> strategies = new HashMap<>();
 
-    public double execute(String command) throws UnsupportedCalculatorOperationException {
+    double wynik;
 
-        validCommand(command);
+    public Calculator() {
 
-        String[] split = command.split(" ");
-
-        switch (split[0]) {
-            case "+":
-                wynik += Double.parseDouble(split[1]);
-                break;
-
-            case "-":
-                wynik -= Double.parseDouble(split[1]);
-                break;
-
-            case "*":
-                wynik *= Double.parseDouble(split[1]);
-                break;
-
-            case "/":
-                wynik /= Double.parseDouble(split[1]);
-                break;
-
-        }
-
-        return wynik;
+        strategies.put("+", new PlusStrategy());
+        strategies.put("-", new MinusStrategy());
+        strategies.put("*", new MultiplyStrategy());
+        strategies.put("/", new DivideStrategy());
 
     }
+
+    public double execute(String command) throws UnsupportedCalculatorOperationException {
+        validCommand(command);
+
+        String[] splitCommand = command.split(" ");
+        String arithmeticChar = splitCommand[0];
+        double number = Double.parseDouble(splitCommand[1]);
+        return wynik = strategies.get(arithmeticChar).calculate(wynik, number);
+
+        }
 
     public double total(){
         return wynik;
