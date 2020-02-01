@@ -9,12 +9,7 @@ public class Calculator {
 
     public double execute(String command) throws Exception {
 
-        Pattern pattern = Pattern.compile("[\\+,\\-,\\*,\\/] [\\d,.]+");
-        Matcher matcher = pattern.matcher(command);
-
-        if (!matcher.find()) {
-            throw new UnsupportedCalculatorOperationsException("Niepoprawne dane (UnsupportedCalculatonOperationsExecutions)");
-        }
+        Matcher matcher = getValidate(command);
         String[] splittedCommand = matcher.group().split(" ");
 
         String operator = splittedCommand[0];
@@ -36,5 +31,16 @@ public class Calculator {
         }
         return 0;
 
+    }
+
+    private Matcher getValidate(String command) throws UnsupportedCalculatorOperationsException {
+      //  Pattern pattern = Pattern.compile("^[\\+,\\-,\\*,\\/] [\\d,.]+$"); <--- to zadziała jak używmy fond zamiast matches()
+        Pattern pattern = Pattern.compile("[\\+,\\-,\\*,\\/] [\\d,.]+");
+        Matcher matcher = pattern.matcher(command);
+
+        if (!matcher.matches()) {
+            throw new UnsupportedCalculatorOperationsException("Niepoprawne dane (UnsupportedCalculatonOperationsExecutions)");
+        }
+        return matcher;
     }
 }
