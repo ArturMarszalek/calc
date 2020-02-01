@@ -3,36 +3,25 @@ package calculator;
 
 public class Calculator {
 
-    double value = 0;
+    static double value = 0;
 
-    public double execute(String command) {
+    public static double execute(String command) throws Exception {
 
-        String[] values = command.split(" ");
-        String operation = values[0];
-        double number = Double.parseDouble(values[1]);
+        String[] tablica = command.split(" ");
 
-        switch (operation) {
-            case "+": {
-                value+=number;
-            }
-            break;
-            case "-": {
-                value-=number;
-            }
-            break;
-            case "/": {
-                value/=number;
-            }
-            break;
-            case "*": {
-                value*=number;
-            }
-            break;
+
+        switch (tablica[0]) {
+            case "+":
+                return value += Double.parseDouble(tablica[1]);
+            case "-":
+                return value -= Double.parseDouble(tablica[1]);
+            case "*":
+                return value = value * Double.parseDouble(tablica[1]);
+            case "/":
+                return value = value / Double.parseDouble(tablica[1]);
+            default:
+                throw new Exception();
         }
-        return value;
-
-
-
 
     }
 }
