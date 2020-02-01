@@ -1,40 +1,33 @@
 package calculator;
 
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class Calculator {
 
 
     double result = 0;
+    HashMap<String,ICalculateActionStrategy> strategies = new HashMap<>();
+
+    public Calculator(){
+
+        strategies.put("+",new AddStrategy());
+        strategies.put("*",new MultiplyStrategy());
+        strategies.put("-", new SubtractStrategy());
+        strategies.put("/", new DivideStrategy());
+    }
 
     public double execute(String command) throws UnsupportedCalculatorOpperationException {
-//        boolean notMatch = false;
-//        if (notMatch) {
-//            throw (UnsupportedCalculatorOpperationException);
 
         validCommand(command);
-//        }
+
         String[] tab = command.split(" ");
+        String arithmeticChar = tab[0];
+        double number = Double.parseDouble(tab[1]);
+        return result = strategies.get(arithmeticChar).calculate(result, number);
 
-        switch (tab[0]) {
-            case "+":
-                result += Double.parseDouble(tab[1]);
 
-                break;
-            case "-":
-                result -= Double.parseDouble(tab[1]);
-                break;
-            case "*":
-                result *= Double.parseDouble(tab[1]);
-                break;
-            case "/":
-                result /= Double.parseDouble(tab[1]);
-                break;
-
-        }
-
-        return result;
     }
 
     public double total() {
