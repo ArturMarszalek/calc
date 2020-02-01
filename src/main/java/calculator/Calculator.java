@@ -7,20 +7,20 @@ public class Calculator {
 
     public double execute(String command) {
 
-        String[] tab = command.split(" ");
+        String[] number = command.split(" ");
 
-        switch (tab[0]) {
+        switch (number[0]) {
             case "+":
-                result += Double.parseDouble(tab[1]);
+                result += Double.parseDouble(number[1]);
                 break;
             case "-":
-                result -= Double.parseDouble(tab[1]);
+                result -= Double.parseDouble(number[1]);
                 break;
             case "*":
-                result *=  Double.parseDouble(tab[1]);
+                result *=  Double.parseDouble(number[1]);
                 break;
             case "/":
-                result /= Double.parseDouble(tab[1]);
+                result /= Double.parseDouble(number[1]);
                 break;
             default:
                 return result;
