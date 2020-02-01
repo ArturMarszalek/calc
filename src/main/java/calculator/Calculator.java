@@ -9,11 +9,11 @@ public class Calculator {
 
     public double execute(String action) {
 
-        if (action.equals("total")) {
-            return value;
-        }
-            String[] items = action.split(" ");
 
+            String[] items = action.split(" ");
+if (items.length<2){
+    return value;
+}
             String aritmeticChar = items[0];
             double numer = Double.parseDouble(items[1]);
 
@@ -51,7 +51,9 @@ public class Calculator {
     public double divideNumbers(double number) {
         return value / number;
     }
-
+ public double total(){
+        return value;
+ }
 
 //    public double execute(String command) {
 //        return 0;

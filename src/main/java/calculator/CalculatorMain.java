@@ -6,12 +6,15 @@ public class CalculatorMain {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
-        boolean loop = true;
-        while (loop) {
+
+        while (true) {
             System.out.println("Działanie: ");
             String dzialanie = scanner.nextLine();
             if (dzialanie.equals("exit")) {
                 break;
+            }
+            if (dzialanie.equals("total")){
+                calculator.total();
             }
             try {
                 System.out.println(calculator.execute(dzialanie));
