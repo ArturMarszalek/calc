@@ -26,5 +26,8 @@ public class Calculator {
 
     }
 
-
+    public double total () {
+        System.out.println(result);
+        return result;
+    }
 }
