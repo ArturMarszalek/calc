@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedCalculatorOperation {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
 
@@ -16,15 +16,19 @@ public class Main {
                 System.out.println("Program zakończył działanie");
                 break;
             } else if (userChoice.equals("total")){
-                calculator.getResult();
-                System.out.println("Wynikiem działań jest: " + calculator.getResult());
+                System.out.println("Wynikiem działań jest: " + calculator.getTotal());
                 continue;
             }
             try {
                 System.out.println("Wynikiem działania jest: " + calculator.execute(userChoice));
-            } catch (Exception e) {
-                System.out.println("Niepoprawna komenda");
-                }
+            } catch (UnsupportedCalculatorOperation e) {
+                System.out.println("Niepoprawna komenda, spróbuj \n" +
+                        "[znak arytmetyczny][spacja][liczba]");
+            }
+//                } catch (Exception unsupportedCalculatorOperation){
+//                System.out.println("Niepoprawna komenda");
+
+
         }
     }
 }
