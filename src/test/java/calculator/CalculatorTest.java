@@ -15,9 +15,9 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddNumber() throws Exception {
+    void shouldAddNumber() throws UnsupportedCalculatorOperation {
         //given
-        Calculator.value = 0;
+
         //when
         double result = calculator.execute("+ 4");
         //then
@@ -25,9 +25,8 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSubtractNumber() throws Exception {
+    void shouldSubtractNumber() throws UnsupportedCalculatorOperation {
         //given
-        Calculator.value = 0;
 
         //when
         double result = calculator.execute("- 7");
@@ -36,10 +35,8 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldMultiplyNumbers() throws Exception {
+    void shouldMultiplyNumbers() throws UnsupportedCalculatorOperation {
         //given
-        Calculator.value = 0;
-
         calculator.execute("+ 3.5");
         //when
         double result = calculator.execute("* 3");
@@ -48,10 +45,8 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldDivideNumbers() throws Exception {
+    void shouldDivideNumbers() throws UnsupportedCalculatorOperation {
         //given
-        Calculator.value = 0;
-
         calculator.execute("+ 7.5");
         //when
         double result = calculator.execute("/ 2.5");
