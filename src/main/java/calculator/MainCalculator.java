@@ -35,9 +35,13 @@ public class MainCalculator {
                     try {
                         calculator.execute(command);
                         System.out.println("Dzialanie zostało wykonane!");
-                    } catch (Exception e) {
+                    } catch (UnsupportedCalculatorOperationException e) {
                         System.out.println("Niewłaściwa komenda!");
+                    } catch (Exception e) {
+                        System.out.println("Cos poszlo nie tak!! Blad programu");
+                        System.out.println(e.getMessage());
                     }
+
                     break;
 
             }
