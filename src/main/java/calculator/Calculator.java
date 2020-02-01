@@ -1,31 +1,28 @@
 package calculator;
 
 
-import java.sql.SQLOutput;
-
 public class Calculator {
 
     double wynik = 0;
 
     public double execute(String command) {
 
-
         String[] split = command.split(" ");
 
         switch (split[0]) {
-                case "+":
+            case "+":
                 wynik += Double.parseDouble(split[1]);
                 break;
 
-                case "-":
+            case "-":
                 wynik -= Double.parseDouble(split[1]);
                 break;
 
-                case "*":
+            case "*":
                 wynik *= Double.parseDouble(split[1]);
                 break;
 
-                case "/":
+            case "/":
                 wynik /= Double.parseDouble(split[1]);
                 break;
 
@@ -34,4 +31,9 @@ public class Calculator {
         return wynik;
 
     }
+
+    public double total(){
+        return wynik;
+    }
+
 }
