@@ -23,4 +23,8 @@ public class Calculator {
         }
 
     }
+
+    public double total() {
+        return value;
+    }
 }

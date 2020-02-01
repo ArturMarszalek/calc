@@ -14,11 +14,16 @@ public class Main {
             while (exit) {
                 System.out.println("Wpisz polecenie: ");
                 String out = scanner.nextLine();
+                if(out.equals("total")){
+                    System.out.println(calculator.total());
+                    continue;
+                }
                 if(!out.equals("exit")){
                     System.out.println(calculator.execute(out));}
                 else{
                     exit = false;
                 }
+
             }
         } catch (Exception e) {
             System.out.println("błędne polecenie, podaj poprawne");
