@@ -15,7 +15,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddNumber() {
+    void    shouldAddNumber() {
         //given
 
         //when
