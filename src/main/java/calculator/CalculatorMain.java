@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class CalculatorMain {
     public static void main(String[] args) {
+
+
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
 
@@ -18,8 +20,10 @@ public class CalculatorMain {
             }
             try {
                 System.out.println(calculator.execute(dzialanie));
+            }catch (UnsupportedCommandException e){
+                System.out.println("Błąd! walidacja nie poprawna.");
             }catch (Exception e){
-                System.out.println("Błąd! Nazwa nie poprawna.");
+                System.out.println("Błąd! ");
             }
         }
     }
