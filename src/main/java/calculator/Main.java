@@ -24,8 +24,8 @@ public class Main {
                 if (userChoice.equals("exit")) {
                     break;
                 }
-            } catch (Exception e) {
-                System.out.println("Coś poszło nie tak");
+            } catch (UnsupportedCalculatorOpperationException e) {
+                System.out.println("Niepoprawny format");
 
 
             }
