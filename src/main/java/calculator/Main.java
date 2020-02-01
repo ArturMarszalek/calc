@@ -13,19 +13,21 @@ public class Main {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            while (scanner.hasNext()) {
+
+        while (scanner.hasNext()) {
+            try {
                 String userChoice = scanner.nextLine();
+
                 if (userChoice.equals("exit")) {
                     System.exit(0);
+                } else if (userChoice.equals("total")) {
+                    System.out.println(calculator.getTotal());
+                } else {
+                    double result = calculator.execute(userChoice);
                 }
-                double result = calculator.execute(userChoice);
-                System.out.println(result);
-
+            } catch (Exception e) {
+                System.out.println("Wpisaono niepoprawną komendę");
             }
-
-        } catch(Exception e){
-            System.out.println("Wpisaono niepoprawną komendę");
         }
     }
 }

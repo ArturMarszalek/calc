@@ -30,4 +30,8 @@ public class Calculator {
         }
         return result;
     }
+
+    public double getTotal() {
+        return result;
+    }
 }
