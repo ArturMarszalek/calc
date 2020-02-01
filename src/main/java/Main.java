@@ -8,7 +8,7 @@ public class Main {
         Calculator calculator = new Calculator();
         boolean nextAction = true;
         try {
-            do {
+            while (true) {
                 System.out.println("Proszę podać działanie i liczbę ");
                 Scanner sc = new Scanner(System.in);
                 String command = sc.nextLine();
@@ -20,7 +20,7 @@ public class Main {
                 System.out.println("Wynik: " + calculator.getValue());
 
             }
-            while (nextAction);
+
 
 
         } catch (UnsuportedCommandException e) {

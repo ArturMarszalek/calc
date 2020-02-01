@@ -1,5 +1,5 @@
 package calculator;
 
-public class UnsuportedCommandException extends Throwable {
+public class UnsuportedCommandException extends Exception {
 
 }
