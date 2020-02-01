@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
-        boolean nextAction = true;
+
         try {
             while (true) {
                 System.out.println("Proszę podać działanie i liczbę ");
@@ -18,17 +18,17 @@ public class Main {
                 }
                 calculator.validation(command);
                 System.out.println("Wynik: " + calculator.getValue());
-
             }
-
-
-
         } catch (UnsuportedCommandException e) {
             System.out.println("Nie poprawny format");
             System.out.println("Dotychczasowy rezultat to: " + calculator.getValue());
+
         }
 
+
+
     }
+
 
 
 }
