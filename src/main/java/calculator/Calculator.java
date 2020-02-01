@@ -41,4 +41,8 @@ public class Calculator {
 
         return result;
     }
+
+    public double getResult() {
+        return result;
+    }
 }
