@@ -4,7 +4,7 @@ package calculator;
 import java.util.Scanner;
 
 public class Calculator {
-   private double value = 0;
+    private double value = 0;
 
     public double execute(String command) {
 
@@ -29,5 +29,10 @@ public class Calculator {
                 break;
         }
         return value;
+    }
+
+    public double getResult() {
+        return value;
+
     }
 }
