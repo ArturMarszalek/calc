@@ -15,7 +15,7 @@ class CalculatorTest {
     }
 
     @Test
-    void    shouldAddNumber() throws UnsupportedPatternOpperation, CantDivideByZero {
+    void    shouldAddNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
         //given
 
         //when
@@ -25,7 +25,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSubtractNumber() throws UnsupportedPatternOpperation, CantDivideByZero {
+    void shouldSubtractNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
         //given
 
         //when
@@ -35,7 +35,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldMultiplyNumbers() throws UnsupportedPatternOpperation, CantDivideByZero {
+    void shouldMultiplyNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
         //given
         calculator.execute("+ 3.5");
         //when
@@ -45,12 +45,40 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldDivideNumbers() throws UnsupportedPatternOpperation, CantDivideByZero {
+    void shouldDivideNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
         //given
         calculator.execute("+ 7.5");
         //when
         double result = calculator.execute("/ 2.5");
         //then
+        assertThat(result).isEqualTo(3);
+    }
+    @Test
+    void shouldNotDivideNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+        //given
+        calculator.execute("+ 7.5");
+        //when
+        double result = calculator.execute("/ 0");
+        //then
+        assertThat(result).isEqualTo(3);
+    }
+    @Test
+    void shouldThrowUnsupportedPatternException() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+        //given
+        calculator.execute("+7.5");
+        //when
+        double result = calculator.execute("/ 2.5");
+        //then
+        assertThat(result).isEqualTo(3);
+    }
+    @Test
+    void shouldShowTotal() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+        //given
+        calculator.execute("+7.5");
+        //when
+        double result = calculator.execute("/ 2.5");
+        //then
+        calculator.execute("total");
         assertThat(result).isEqualTo(3);
     }
 }

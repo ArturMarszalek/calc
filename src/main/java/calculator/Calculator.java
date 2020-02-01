@@ -1,46 +1,35 @@
 package calculator;
 
 
+import calculator.operations.*;
+
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class Calculator {
     double result;
 
-    public void validateOperation(String command) throws UnsupportedPatternOpperation {
+    public void validateOperation(String command) throws UnsupportedPatternOpperationException {
         Pattern pattern = Pattern.compile("[+\\-*/] \\d*\\.?\\d*");
         if (!pattern.matcher(command).matches()) {
-            throw new UnsupportedPatternOpperation();
+            throw new UnsupportedPatternOpperationException();
         }
     }
 
-    public void validateDividingByZero(Double numberFromSplitting) throws CantDivideByZero {
-        if (numberFromSplitting == 0) {
-            throw new CantDivideByZero();
-        }
-    }
 
-    public double execute(String command) throws UnsupportedPatternOpperation, CantDivideByZero {
+    public double execute(String command) throws UnsupportedPatternOpperationException, CantDivideByZeroException {
         validateOperation(command);
         String[] splittedString = command.split(" ");
         double numberFromSplitting = Double.parseDouble(splittedString[1]);
+        HashMap<String, ICalcOperations> operationsHashMap = new HashMap<>();
 
-        switch (splittedString[0]) {
-            case "+":
-                result += numberFromSplitting;
-                return result;
-            case "-":
-                result -= numberFromSplitting;
-                return result;
-            case "*":
-                result *= numberFromSplitting;
-                return result;
-            case "/":
-                validateDividingByZero(numberFromSplitting);
-                result /= numberFromSplitting;
-                return result;
-            default:
-                return 0;
-        }
+        operationsHashMap.put("+", new AddNumber());
+        operationsHashMap.put("-", new SubtractNumber());
+        operationsHashMap.put("*", new MultiplyNumber());
+        operationsHashMap.put("/", new DivideNumber());
+
+        result = operationsHashMap.get(splittedString[0]).calculate(result, numberFromSplitting);
+        return result;
 
     }
 

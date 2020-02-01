@@ -1,6 +1,6 @@
 import calculator.Calculator;
-import calculator.CantDivideByZero;
-import calculator.UnsupportedPatternOpperation;
+import calculator.CantDivideByZeroException;
+import calculator.UnsupportedPatternOpperationException;
 
 import java.util.Scanner;
 
@@ -25,11 +25,11 @@ public class Main {
 
                 calculator.execute(result);
 
-            } catch (UnsupportedPatternOpperation e) {
+            } catch (UnsupportedPatternOpperationException e) {
                 System.out.println("Operation dont match pattern");
             } catch (Exception e) {
                 System.out.println("Incorrect operation");
-            } catch (CantDivideByZero cantDivideByZero) {
+            } catch (CantDivideByZeroException cantDivideByZero) {
                 System.out.println("You cant divide by zero!");
             }
 
