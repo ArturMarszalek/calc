@@ -1,11 +1,14 @@
 package calculator;
 
+import java.util.regex.Pattern;
 
 public class Calculator {
 
     double wynik = 0;
 
-    public double execute(String command) {
+    public double execute(String command) throws UnsupportedCalculatorOperationException {
+
+        validCommand(command);
 
         String[] split = command.split(" ");
 
@@ -34,6 +37,13 @@ public class Calculator {
 
     public double total(){
         return wynik;
+
     }
 
+    public void validCommand(String command) throws UnsupportedCalculatorOperationException {
+        Pattern pattern = Pattern.compile("[\\+,\\-,*,\\/] \\d*.?\\d+$");
+        if (!pattern.matcher(command).matches()) {
+            throw new UnsupportedCalculatorOperationException();
+        }
+    }
 }
