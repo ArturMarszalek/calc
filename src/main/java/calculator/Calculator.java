@@ -3,25 +3,30 @@ package calculator;
 
 public class Calculator {
 
-    private double result;
+    private double result = 0;
 
     public double execute(String command) {
 
         String[] splitResult = command.split(" ");
 
-        Double parseDobule = Double.parseDouble(splitResult[1]);
+        Double value = Double.parseDouble(splitResult[1]);
 
 
         switch (splitResult[0]) {
             case "+":
-                return 4;
+                result += value;
+                break;
             case "-":
-                return -7;
+                result -= value;
+                break;
             case "*":
-                return 10.5;
+                result *= value;
+                break;
             case "/":
-                return 3;
+                result /= value;
+                break;
             default:
+                System.out.println("Nie podbano stringa");
         }
         return result;
     }
