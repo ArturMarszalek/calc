@@ -7,7 +7,5 @@ public class Calculator {
         return 0;
     }
 
-    public double dodaj(){
-        return 0.0;
-    }
+
 }
