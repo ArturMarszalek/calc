@@ -17,7 +17,7 @@ class CalculatorTest {
     @Test
     void shouldAddNumber() throws Exception {
         //given
-Calculator.value = 0;
+
         //when
         double result = calculator.execute("+ 4");
         //then
@@ -27,7 +27,7 @@ Calculator.value = 0;
     @Test
     void shouldSubtractNumber() throws Exception {
         //given
-        Calculator.value = 0;
+
 
         //when
         double result = calculator.execute("- 7");
@@ -38,7 +38,7 @@ Calculator.value = 0;
     @Test
     void shouldMultiplyNumbers() throws Exception {
         //given
-        Calculator.value = 0;
+
 
         calculator.execute("+ 3.5");
         //when
@@ -50,7 +50,7 @@ Calculator.value = 0;
     @Test
     void shouldDivideNumbers() throws Exception {
         //given
-        Calculator.value = 0;
+
 
         calculator.execute("+ 7.5");
         //when
