@@ -16,6 +16,7 @@ public class Calculator {
         strategies.put("-", new SubstractStrategy());
         strategies.put("*", new MultiplyStrategy());
         strategies.put("/", new DivideStrategy());
+        strategies.put("!", new RootStrategy());
     }
 
     public double execute(String command) throws UnsupportedCalculatorOperationException {
@@ -59,7 +60,7 @@ public class Calculator {
         return result;
     }
     public void validCommand(String command) throws UnsupportedCalculatorOperationException {
-        Pattern pattern = Pattern.compile("[\\+,\\-,*,\\/] \\d*.?\\d+$");
+        Pattern pattern = Pattern.compile("[\\!,\\+,\\-,*,\\/] \\d*.?\\d+$");
         if (!pattern.matcher(command).matches()) {
             throw new UnsupportedCalculatorOperationException();
         }
