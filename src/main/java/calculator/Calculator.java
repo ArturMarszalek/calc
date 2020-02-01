@@ -2,22 +2,25 @@ package calculator;
 
 
 public class Calculator {
-    double value = 0;
-    public double execute(String command) {
+    static double value = 0;
 
-    String[] tablica = command.split(" ");
+    public static double execute(String command) throws Exception {
+
+        String[] tablica = command.split(" ");
 
 
         switch (tablica[0]) {
             case "+":
-                return value =+ Double.parseDouble(tablica[1]);
+                return value += Double.parseDouble(tablica[1]);
             case "-":
-                return value =- Double.parseDouble(tablica[1]);
+                return value -= Double.parseDouble(tablica[1]);
             case "*":
                 return value = value * Double.parseDouble(tablica[1]);
             case "/":
                 return value = value / Double.parseDouble(tablica[1]);
+            default:
+                throw new Exception();
         }
-        return 0;
+
     }
 }
