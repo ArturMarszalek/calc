@@ -37,12 +37,7 @@ public class Main {
                     System.out.println("Wynik: " + calculator.getResult());
                     break;
                 default:
-                    try {
-                        calculator.execute(command);
-                        System.out.println("Operacja została wykonana!");
-                    } catch (UnsupportedCommandException e) {
-                        System.out.println("Niewłaściwa komenda!");
-                    }
+                    calculator.execute(command);
                     break;
 
             }

@@ -1,53 +1,30 @@
 package calculator;
 
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashMap;
 
 public class Calculator {
 
     private double result;
+    private HashMap<String, ICalculatorActionStrategy> strategies;
 
     public Calculator() {
+        strategies = new HashMap<>();
+        strategies.put("+", new AddStrategy());
+        strategies.put("*", new MultipleStrategy());
+        strategies.put("-", new SubtrackStrategy());
+        strategies.put("/", new DiviStrategy());
+
         result = 0;
     }
 
-    public double execute(String command) throws UnsupportedCommandException {
+    public double execute(String command) {
 
-        Pattern p = Pattern.compile("^[\\+\\-\\*\\/] \\d*\\.?\\d+$");
+        String[] split = command.split(" ");
+        String commandName = split[0];
+        double number = Double.parseDouble(split[1]);
 
-        Matcher m = p.matcher(command);
-
-        if (!m.find()) {
-            throw new UnsupportedCommandException("Niepoprawna komenda!");
-        }
-
-        String[] split = m.group().split(" ");
-
-        double value = Double.parseDouble(split[1]);
-
-        switch (split[0]) {
-
-            case "+":
-                result += value;
-                return result;
-
-            case "-":
-                result -= value;
-                return result;
-
-            case "*":
-                result *= value;
-                return result;
-
-            case "/":
-                result /= value;
-                return result;
-
-            default:
-                throw new UnsupportedCommandException("Nie podano operatora!");
-
-        }
+        result = strategies.get(commandName).calculate(result, number);
+        return result;
     }
 
     public double getResult() {
