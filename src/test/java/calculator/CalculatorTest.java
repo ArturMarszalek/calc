@@ -32,7 +32,7 @@ class CalculatorTest {
         double result = calculator.execute("- 7");
         //then
         assertThat(result).isEqualTo(-7);
-/   }
+   }
 
     @Test
     void shouldMultiplyNumbers() {
