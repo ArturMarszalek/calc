@@ -42,5 +42,9 @@ public class Calculator {
     public java.util.Set<String> availableOperations() {
         return strategies.keySet();
     }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
 }
 
