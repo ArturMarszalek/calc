@@ -53,4 +53,20 @@ class CalculatorTest {
         //then
         assertThat(result).isEqualTo(3);
     }
+
+    @Test
+    void shouldThrowAnExceptionWhenPatterIsInvalid() throws UnsupportedCalculatorOperationException{
+        // given
+        UnsupportedCalculatorOperationException expectedException = null;
+        // when
+        try {
+            calculator.execute("-2");
+        }
+        catch (UnsupportedCalculatorOperationException e)
+        {
+            expectedException = e;
+        }
+        // then
+        assertThat(expectedException).isNotNull();
+    }
 }
