@@ -26,7 +26,7 @@ public class Main {
 
         while (true) {
             try {
-                System.out.println("Available operations: " + calculator.operationsHashMap.keySet() + " exit, total:");
+                System.out.println("Available operations: " + calculator.operationsHashMap.keySet() + " exit, total, back:");
                 result = scanner.nextLine();
                 if (result.equals("exit")) {
                     break;
@@ -35,7 +35,10 @@ public class Main {
                     System.out.println(calculator.getResult());
                     continue;
                 }
-
+                if (result.equals("back")){
+                    calculator.back();
+                    continue;
+                }
                 calculator.execute(result);
 
             } catch (UnsupportedStrategyOperationException e) {

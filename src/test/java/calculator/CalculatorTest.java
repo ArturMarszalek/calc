@@ -21,7 +21,6 @@ class CalculatorTest {
     @Test
     void shouldAddNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
         //given
-
         //when
         double result = calculator.execute("+ 4");
         //then
@@ -31,7 +30,6 @@ class CalculatorTest {
     @Test
     void shouldSubtractNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
         //given
-
         //when
         double result = calculator.execute("- 7");
         //then
@@ -63,7 +61,6 @@ class CalculatorTest {
         //given
         calculator.execute("+ 7.5");
         //when
-
         //then
         Assertions.assertThrows(CantDivideByZeroException.class, () -> calculator.execute("/ 0"));
     }
@@ -71,9 +68,7 @@ class CalculatorTest {
     @Test
     void shouldThrowUnsupportedPatternException() {
         //given
-
         //when
-
         //then
         Assertions.assertThrows(UnsupportedPatternOpperationException.class,
                 () -> calculator.execute("sd 2.5"));
@@ -92,7 +87,6 @@ class CalculatorTest {
     @Test
     void shouSqrtNumbers() throws CantDivideByZeroException, UnsupportedPatternOpperationException, UnsupportedStrategyOperationException {
         //given
-
         //when
         double result = calculator.execute("sqrt 4");
         //then
@@ -107,5 +101,16 @@ class CalculatorTest {
         double result = calculator.execute("^ 2");
         //then
         assertThat(result).isEqualTo(4);
+    }
+
+    @Test
+    void shouldBackToPreviousValue() throws Exception, CantDivideByZeroException {
+        //given
+        calculator.execute("+ 3");
+        calculator.execute("+ 5");
+        //when
+        calculator.back();
+        //then
+        assertThat(calculator.result).isEqualTo(3);
     }
 }
