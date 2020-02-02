@@ -22,6 +22,8 @@ public class Main {
             }
             try {
                 System.out.println("Wynikiem działania jest: " + calculator.execute(userChoice));
+            } catch (UnsupportedActionStrategyException e) {
+                System.out.println("Podales zly znak dzialania.");
             } catch (UnsupportedCalculatorOperation e) {
                 System.out.println("Niepoprawna komenda, spróbuj \n" +
                         "[znak arytmetyczny][spacja][liczba]");

@@ -16,7 +16,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddNumber() throws UnsupportedCalculatorOperation {
+    void shouldAddNumber() throws UnsupportedCalculatorOperation, UnsupportedActionStrategyException {
         //given
 
         //when
@@ -26,7 +26,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSubtractNumber() throws UnsupportedCalculatorOperation {
+    void shouldSubtractNumber() throws UnsupportedCalculatorOperation, UnsupportedActionStrategyException {
         //given
 
         //when
@@ -36,7 +36,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldMultiplyNumbers() throws UnsupportedCalculatorOperation {
+    void shouldMultiplyNumbers() throws UnsupportedCalculatorOperation, UnsupportedActionStrategyException {
         //given
         calculator.execute("+ 3.5");
         //when
@@ -46,7 +46,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldDivideNumbers() throws UnsupportedCalculatorOperation {
+    void shouldDivideNumbers() throws UnsupportedCalculatorOperation, UnsupportedActionStrategyException {
         //given
         calculator.execute("+ 7.5");
         //when
@@ -56,7 +56,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldPowerNumber() throws UnsupportedCalculatorOperation {
+    void shouldPowerNumber() throws UnsupportedCalculatorOperation, UnsupportedActionStrategyException {
         //given
         calculator.execute("+ 2");
         //when
@@ -66,7 +66,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSqrtNumber() throws UnsupportedCalculatorOperation {
+    void shouldSqrtNumber() throws UnsupportedCalculatorOperation, UnsupportedActionStrategyException {
         //given
         calculator.execute("+ 16");
         //when
@@ -82,8 +82,8 @@ class CalculatorTest {
         //when
         try {
             calculator.execute("-2");
-        } catch (UnsupportedCalculatorOperation e) {
-            expectedException = e;
+        } catch (UnsupportedCalculatorOperation | UnsupportedActionStrategyException e) {
+            expectedException = (UnsupportedCalculatorOperation) e;
         }
         //then
         assertThat(expectedException).isNotNull();
@@ -99,4 +99,30 @@ class CalculatorTest {
         //then
         assertThat(expectedException).isNotNull();
     }
+
+    @Test
+    void shouldThrowAnExceptionWhenUnsupportedActionStrategyIsMade() throws UnsupportedActionStrategyException{
+        //given
+        UnsupportedActionStrategyException expectedException = null;
+        //when
+        try {
+            calculator.execute(") 2");
+        } catch (UnsupportedActionStrategyException | UnsupportedCalculatorOperation e) {
+            expectedException = (UnsupportedActionStrategyException) e;
+        }
+        //then
+        assertThat(expectedException).isNotNull();
+    }
+
+    @Test
+    void shouldThrowAnExceptionWhenUnsupportedActionStrategyNotMade() throws UnsupportedActionStrategyException {
+        //given
+        //when
+        UnsupportedActionStrategyException expectedException = Assertions.assertThrows(UnsupportedActionStrategyException.class,
+                () -> calculator.execute("5 4"));
+
+        //then
+        assertThat(expectedException).isNotNull();
+    }
+
 }

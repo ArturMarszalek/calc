@@ -19,18 +19,20 @@ import java.util.regex.Pattern;
             strategies.put("%", new SqrtStrategy());
         }
 
-        public double execute(String command) throws UnsupportedCalculatorOperation {
-            validCommand(command);
+        public double execute(String command) throws UnsupportedCalculatorOperation, UnsupportedActionStrategyException {
+                validCommand(command);
 
-            String[] splitCommand = command.split(" ");
-            result = strategies.get(splitCommand[0]).calculate(result, Double.parseDouble(splitCommand[1]));
-            return result;
+                String[] splitCommand = command.split(" ");
+            ICalculatorActionStrategy strategy = strategies.getOrDefault(splitCommand[0], new DefaultStrategy());
+            result = strategy.calculate(result, Double.parseDouble(splitCommand[1]));
+
+                return result;
         }
         public double getTotal() {
             return result;
         }
         public void validCommand(String command) throws UnsupportedCalculatorOperation {
-            Pattern pattern = Pattern.compile("[\\%,\\^,\\+,\\-,*,\\/] \\d*.?\\d+$");
+            Pattern pattern = Pattern.compile("(\\S+) \\d*\\.?\\d+");
             if (!pattern.matcher(command).matches()) {
                 throw new UnsupportedCalculatorOperation();
             }
