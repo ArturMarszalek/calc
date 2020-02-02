@@ -8,7 +8,6 @@ public class Calculator {
 
         String[] tablica = command.split(" ");
 
-
         switch (tablica[0]) {
             case "+":
                 return value += Double.parseDouble(tablica[1]);
