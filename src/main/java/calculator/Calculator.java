@@ -16,6 +16,8 @@ public class Calculator {
         strategies.put("*",new MultiplyStrategy());
         strategies.put("-", new SubtractStrategy());
         strategies.put("/", new DivideStrategy());
+        strategies.put("^", new PowerStrategy());
+        strategies.put("#", new SqrtNumbers());
     }
 
     public double execute(String command) throws UnsupportedCalculatorOpperationException {
@@ -35,7 +37,7 @@ public class Calculator {
     }
 
     private void validCommand(String command) throws UnsupportedCalculatorOpperationException {
-        Pattern pattern = Pattern.compile("[\\+\\-\\*\\/] \\d*\\.?\\d+");
+        Pattern pattern = Pattern.compile("[\\+\\-\\*\\/\\^\\#] \\d*\\.?\\d+");
         if (!pattern.matcher(command).matches()){
             throw new UnsupportedCalculatorOpperationException();
         }
