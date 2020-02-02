@@ -58,12 +58,12 @@ class CalculatorTest {
     @Test
     void shouldThrowAnExceptionWhenPatterIsInvalid() {
         //given
-        UnsupportedCalculatorOperation expectedException = null;
+        Exception expectedException = null;
         //when
         try {
             calculator.execute("-2");
         }
-        catch (UnsupportedCalculatorOperation e)
+        catch (Exception e)
         {
             expectedException = e;
         }
@@ -75,7 +75,7 @@ class CalculatorTest {
     void shouldThrowAnExceptionWhenPatterIsInvalidAgain() {
         //given
         //when
-        UnsupportedCalculatorOperation expectedException = Assertions.assertThrows(UnsupportedCalculatorOperation.class,
+        Exception expectedException = Assertions.assertThrows(Exception.class,
                 () -> calculator.execute("-2"));
 
         //then
