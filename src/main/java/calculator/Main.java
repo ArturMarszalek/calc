@@ -6,8 +6,7 @@ public class Main {
     public static void main(String[] args){
 
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator();
-        calculator.setValue(Double.parseDouble(args[0]));
+        Calculator calculator = new Calculator(Double.parseDouble(args[0]));
         boolean shouldQuit=false;
 
         while (!shouldQuit) {

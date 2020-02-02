@@ -14,6 +14,10 @@ public class Calculator {
     double value = 0;
 
     public Calculator() {
+        addStrategies();
+    }
+
+    private void addStrategies() {
         strategies.put("+", new AddStrategy());
         strategies.put("-", new SubtractionStrategy());
         strategies.put("*", new MultiplyStrategy());
@@ -21,6 +25,11 @@ public class Calculator {
         strategies.put("^", new ExponentiationStrategy());
         strategies.put("r", new RootExtractionStrategy());
         strategies.put("", new UnsupportesArithmeticOperationaStrategy());
+    }
+
+    public Calculator(double value) {
+        addStrategies();
+        this.value = value;
     }
 
     public double execute(String command) throws Exception {
