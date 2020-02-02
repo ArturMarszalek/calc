@@ -4,12 +4,14 @@ package calculator;
 import strategy.*;
 
 import java.util.HashMap;
+import java.util.Stack;
 import java.util.regex.Pattern;
 
 public class Calculator {
 
     HashMap<String, ICalculationActionStrategy> strategies = new HashMap<>();
     double result;
+    Stack listOfResults = new Stack();
 
     public Calculator(double startValue) {
         this();
@@ -32,13 +34,18 @@ public class Calculator {
     public double execute(String command) throws UnsupportedCalculatorOperationException, UnsupportedArithmeticOperationException {
 
         validCommand(command);
-
+        listOfResults.push(result);
         String[] splitCommand = command.split(" ");
         String operator = splitCommand[0];
         double number = Double.parseDouble(splitCommand[1]);
         return result = strategies.getOrDefault(operator, new UnsupportedArithmeticStrategy()).calculate(result, number);
+    }
+    public void back() {
+        result = (double) listOfResults.peek();
+        listOfResults.pop();
 
     }
+
         // METODA ROBIENIA SWITCH / CASE
 
 //        public double execute(String command) throws UnsupportedCalculatorOperationException {
@@ -69,6 +76,9 @@ public class Calculator {
     public double getTotal() {
         return result;
     }
+
+
+
     public void validCommand(String command) throws UnsupportedCalculatorOperationException {
         // Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/] \\d*.?\\d+$");
         Pattern pattern1 = Pattern.compile("(\\S+) \\d*\\.?\\d+");
@@ -76,4 +86,6 @@ public class Calculator {
             throw new UnsupportedCalculatorOperationException();
         }
     }
+
+
 }

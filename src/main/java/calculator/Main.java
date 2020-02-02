@@ -25,7 +25,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true){
-            System.out.println("Podaj komendę(dodawanie, odejmowanie, dzielenie, mnożenie, total, exit): ");
+            System.out.println("Podaj komendę(dodawanie, odejmowanie, dzielenie, mnożenie, total, exit, back): ");
             String userChoice = scanner.nextLine();
 
             if (userChoice.equals("exit")){
@@ -33,6 +33,10 @@ public class Main {
                 break;
             } else if (userChoice.equals("total")){
                 System.out.println("Wynikiem działań jest: " + calculator.getTotal());
+                continue;
+            } else if (userChoice.equals("back")){
+                calculator.back();
+                System.out.println(calculator.listOfResults.lastElement());
                 continue;
             }
             try {
