@@ -1,19 +1,17 @@
 package calculator;
+
 import calculator.StrategyCalss.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
 
     private UnsupportedOperationStrategy defaultStrategy;
-    private List<Double> historicalValue = new ArrayList<>();
+    private Stack<Double> historicalValue = new Stack<>();
 
-    public List<Double> getHistoricalValue() {
+    public Collection<Double> getHistoricalValue() {
         return historicalValue;
     }
 
@@ -23,15 +21,16 @@ public class Calculator {
         strategyMap.put("-", new Substract());
         strategyMap.put("*", new Multiply());
         strategyMap.put("/", new Divide());
-        strategyMap.put("^",new PowerOfNumber());
+        strategyMap.put("^", new PowerOfNumber());
         strategyMap.put("'", new Roots());
 
     }
-    public Calculator(){
+
+    public Calculator() {
         this(0);
     }
 
-    double value ;
+    double value;
 
     Map<String, CalculationActionStrategy> strategyMap = new HashMap<>();
 
@@ -43,9 +42,10 @@ public class Calculator {
         value = chosenStrategy.calculate(value, Double.parseDouble(calculation[1]));
         return value;
     }
-    public void back(){
-        value = historicalValue.get(historicalValue.size()-1);
-        historicalValue.remove(historicalValue.size()-1);
+
+    public void back() {
+        value = historicalValue.peek();
+        historicalValue.pop();
     }
 
     public void validation(String commandToCheck) throws UnsuportedActionException, UnsuportedCommandException {
