@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,27 +59,27 @@ class CalculatorTest {
         //given
         calculator.execute("+ 7.5");
         //when
-        double result = calculator.execute("/ 0");
+
         //then
-        assertThat(result).isEqualTo(3);
+        Assertions.assertThrows(CantDivideByZeroException.class, () -> calculator.execute("/ 0"));
     }
     @Test
-    void shouldThrowUnsupportedPatternException() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+    void shouldThrowUnsupportedPatternException()  {
         //given
-        calculator.execute("+7.5");
+
         //when
-        double result = calculator.execute("/ 2.5");
+
         //then
-        assertThat(result).isEqualTo(3);
+        Assertions.assertThrows(UnsupportedPatternOpperationException.class,
+                () -> calculator.execute("/2.5"));
     }
     @Test
     void shouldShowTotal() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
         //given
-        calculator.execute("+7.5");
+        calculator.execute("+ 7.5");
         //when
-        double result = calculator.execute("/ 2.5");
+        calculator.execute("/ 2.5");
         //then
-        calculator.execute("total");
-        assertThat(result).isEqualTo(3);
+        assertThat(calculator.getResult()).isEqualTo(3);
     }
 }
