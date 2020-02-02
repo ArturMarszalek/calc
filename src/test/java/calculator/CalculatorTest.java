@@ -1,7 +1,6 @@
 package calculator;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,6 @@ class CalculatorTest {
     @Test
     void shouldAddNumber() throws Exception {
         //given
-
         //when
         double result = calculator.execute("+ 4");
         //then
@@ -29,8 +27,6 @@ class CalculatorTest {
     @Test
     void shouldSubtractNumber() throws Exception {
         //given
-
-
         //when
         double result = calculator.execute("- 7");
         //then
@@ -40,8 +36,6 @@ class CalculatorTest {
     @Test
     void shouldMultiplyNumbers() throws Exception {
         //given
-
-
         calculator.execute("+ 3.5");
         //when
         double result = calculator.execute("* 3");
@@ -52,25 +46,22 @@ class CalculatorTest {
     @Test
     void shouldDivideNumbers() throws Exception {
         //given
-
-
         calculator.execute("+ 7.5");
         //when
         double result = calculator.execute("/ 2.5");
         //then
         assertThat(result).isEqualTo(3);
+
     }
 
     @Test
-    void shouldThrowAnExceptionWhenPatterIsInvalid() {
+    void shouldThrowAnExceptionWhenPatterIsInvalid() throws Exception {
         //given
-        Exception expectedException = null;
+        UnsupportedCalculatorOperationsException expectedException = null;
         //when
         try {
             calculator.execute("-2");
-        }
-        catch (Exception e)
-        {
+        } catch (UnsupportedCalculatorOperationsException e) {
             expectedException = e;
         }
         //then
@@ -81,10 +72,24 @@ class CalculatorTest {
     void shouldThrowAnExceptionWhenPatterIsInvalidAgain() {
         //given
         //when
-        Exception expectedException = Assertions.assertThrows(Exception.class,
+        UnsupportedCalculatorOperationsException expectedException = Assertions.assertThrows(UnsupportedCalculatorOperationsException.class,
                 () -> calculator.execute("-2"));
-
         //then
         assertThat(expectedException).isNotNull();
+    }
+
+    @Test
+    void testingExponentiation() throws Exception {
+        calculator.execute("+ 2");
+        double result = calculator.execute("^ 2");
+        assertThat(result).isEqualTo(4);
+    }
+
+    @Test
+    void shouldRootExtraction() throws Exception {
+        calculator.execute("+ 27");
+        double result = calculator.execute("# 3");
+        assertThat(result).isEqualTo(3);
+
     }
 }
