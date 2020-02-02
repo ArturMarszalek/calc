@@ -18,7 +18,7 @@ public class Calculator {
         strategies.put("%", new SqrtStrategy());
     }
 
-    public double execute(String command) throws UnsupportedCalculatorOperationsException {
+    public double execute(String command) throws Exception {
 
         Matcher matcher = getValidate(command);
         String[] splittedCommand = matcher.group().split(" ");
@@ -30,12 +30,16 @@ public class Calculator {
 
     private Matcher getValidate(String command) throws UnsupportedCalculatorOperationsException {
 
-        Pattern pattern = Pattern.compile("[\\+,\\-,\\*,\\/,\\^,\\%] [\\d,.]+");
+        Pattern pattern = Pattern.compile("(\\S+) \\d*\\.?\\d+");
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {
             throw new UnsupportedCalculatorOperationsException("Niepoprawne dane");
         }
         return matcher;
+    }
+
+    public java.util.Set<String> availableOperations() {
+        return strategies.keySet();
     }
 }

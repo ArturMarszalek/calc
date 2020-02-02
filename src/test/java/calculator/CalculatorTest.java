@@ -61,15 +61,13 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldThrowAnExceptionWhenPatterIsInvalid() {
+    void shouldThrowAnExceptionWhenPatterIsInvalid() throws Exception {
         //given
         UnsupportedCalculatorOperationsException expectedException = null;
         //when
         try {
             calculator.execute("-2");
-        }
-        catch (UnsupportedCalculatorOperationsException e)
-        {
+        } catch (UnsupportedCalculatorOperationsException e) {
             expectedException = e;
         }
         //then
@@ -87,10 +85,7 @@ class CalculatorTest {
         assertThat(expectedException).isNotNull();
     }
     @Test
-    void shouldPowNumbers() throws Exception {
-        //given
-
-
+    void testingExponentiation() throws Exception {
         calculator.execute("+ 2");
         //when
         double result = calculator.execute("^ 2");
@@ -98,10 +93,9 @@ class CalculatorTest {
         assertThat(result).isEqualTo(4);
     }
     @Test
-    void shouldSquareNumbers() throws Exception {
-        calculator.execute("+ 9");
-        double result = calculator.execute("% 2");
-
+    void shouldRootExtraction() throws Exception {
+        calculator.execute("+ 27");
+        double result = calculator.execute("% 3");
         assertThat(result).isEqualTo(3);
     }
 }
