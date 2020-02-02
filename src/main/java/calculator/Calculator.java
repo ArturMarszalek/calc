@@ -13,6 +13,7 @@ public class Calculator {
         strategyMap.put("*", new Multiply());
         strategyMap.put("/", new Divide());
         strategyMap.put("^",new PowerOfNumber());
+        strategyMap.put("'", new Roots());
     }
 
     double value = 0;
@@ -26,7 +27,7 @@ public class Calculator {
     }
 
     public void validation(String commandToCheck) throws UnsuportedCommandException {
-        Pattern pattern = Pattern.compile("[+,\\-,*,\\/,^] \\d?.+$");
+        Pattern pattern = Pattern.compile("[+,\\-,*,\\/,^,'] \\d?.+$");
         Matcher matcher = pattern.matcher(commandToCheck);
         if (!matcher.matches())
             throw new UnsuportedCommandException();

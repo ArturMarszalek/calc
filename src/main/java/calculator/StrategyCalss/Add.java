@@ -1,8 +1,8 @@
 package calculator.StrategyCalss;
 
-import calculator.StrategyCalss.CalculationActionStrategy;
-
 public class Add implements CalculationActionStrategy {
+    private typeOfMathAction mathActionType = typeOfMathAction.ADD;
+
 
 
     @Override

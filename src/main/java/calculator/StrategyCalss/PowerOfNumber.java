@@ -1,6 +1,9 @@
 package calculator.StrategyCalss;
 
 public class PowerOfNumber implements CalculationActionStrategy {
+    private typeOfMathAction mathActionType = typeOfMathAction.POWEROFNUMBER;
+
+
     @Override
     public double calculate(double first, double second) {
         double power = first;
