@@ -19,7 +19,7 @@ public class Main {
                 }
                 System.out.println("\nWynik = "+calculator.execute(operation));
             } catch (UnsupportedCalculatorOperationsException e) {
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage() + " wybierz: " + calculator.availableOperations());
             } catch (Exception e) {
                 System.out.println("błąd");
             }

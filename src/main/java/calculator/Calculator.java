@@ -18,24 +18,29 @@ public class Calculator {
         strategies.put("#", new RootExtractionStrategy());
     }
 
-    public double execute(String command) throws UnsupportedCalculatorOperationsException {
+    public double execute(String command) throws Exception {
 
         Matcher matcher = getValidate(command);
         String[] splittedCommand = matcher.group().split(" ");
         double number = Double.parseDouble(splittedCommand[1]);
         String operator = splittedCommand[0];
-        value = strategies.get(operator).calculate(value, number);
+        value = strategies.getOrDefault(operator, new WrongInputStrategy()).calculate(value, number);
         return value;
     }
 
     private Matcher getValidate(String command) throws UnsupportedCalculatorOperationsException {
 
-        Pattern pattern = Pattern.compile("[\\+,\\-,\\*,\\/,\\^,\\#] [\\d,.]+");
+        Pattern pattern = Pattern.compile("(\\S+) \\d*\\.?\\d+"); // (\\S+) \\d*\\.?\\d+   /////////////////// .+ [\d,.]+
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {
-            throw new UnsupportedCalculatorOperationsException("Niepoprawne dane");
+            throw new UnsupportedCalculatorOperationsException("Wpisz liczbę!");
         }
         return matcher;
     }
+
+    public java.util.Set<String> availableOperations() {
+        return strategies.keySet();
+    }
 }
+

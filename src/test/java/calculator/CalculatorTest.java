@@ -55,7 +55,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldThrowAnExceptionWhenPatterIsInvalid() {
+    void shouldThrowAnExceptionWhenPatterIsInvalid() throws Exception {
         //given
         UnsupportedCalculatorOperationsException expectedException = null;
         //when
