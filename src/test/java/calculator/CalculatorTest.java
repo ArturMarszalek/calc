@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddNumber() throws UnsupportedCalculatorOperationsException {
+    void shouldAddNumber() {
         //given
 
         //when
@@ -25,7 +26,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSubtractNumber() throws UnsupportedCalculatorOperationsException {
+    void shouldSubtractNumber() {
         //given
 
         //when
@@ -35,7 +36,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldMultiplyNumbers() throws UnsupportedCalculatorOperationsException {
+    void shouldMultiplyNumbers() {
         //given
         calculator.execute("+ 3.5");
         //when
@@ -45,12 +46,39 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldDivideNumbers() throws UnsupportedCalculatorOperationsException {
+    void shouldDivideNumbers() {
         //given
         calculator.execute("+ 7.5");
         //when
         double result = calculator.execute("/ 2.5");
         //then
         assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    void shouldThrowAnExceptionWhenPatterIsInvalid() {
+        //given
+        Exception expectedException = null;
+        //when
+        try {
+            calculator.execute("-2");
+        }
+        catch (Exception e)
+        {
+            expectedException = e;
+        }
+        //then
+        assertThat(expectedException).isNotNull();
+    }
+
+    @Test
+    void shouldThrowAnExceptionWhenPatterIsInvalidAgain() {
+        //given
+        //when
+        Exception expectedException = Assertions.assertThrows(Exception.class,
+                () -> calculator.execute("-2"));
+
+        //then
+        assertThat(expectedException).isNotNull();
     }
 }
