@@ -11,7 +11,7 @@ public class Calculator {
 
     HashMap<String, ICalculationActionStrategy> strategies = new HashMap<>();
     double result;
-    Stack listOfResults = new Stack();
+    Stack<Double> listOfResults = new Stack();
 
     public Calculator(double startValue) {
         this();
@@ -41,12 +41,25 @@ public class Calculator {
         return result = strategies.getOrDefault(operator, new UnsupportedArithmeticStrategy()).calculate(result, number);
     }
     public void back() {
-        result = (double) listOfResults.peek();
+        result = listOfResults.peek();
         listOfResults.pop();
 
     }
 
-        // METODA ROBIENIA SWITCH / CASE
+    public double getTotal() {
+        return result;
+    }
+
+    public void validCommand(String command) throws UnsupportedCalculatorOperationException {
+        // Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/] \\d*.?\\d+$");
+        Pattern pattern1 = Pattern.compile("(\\S+) \\d*\\.?\\d+");
+        if (!pattern1.matcher(command).matches()) {
+            throw new UnsupportedCalculatorOperationException();
+        }
+    }
+}
+
+// METODA ROBIENIA SWITCH / CASE
 
 //        public double execute(String command) throws UnsupportedCalculatorOperationException {
 //
@@ -72,20 +85,3 @@ public class Calculator {
 //        }
 //        return result;
 //    }
-
-    public double getTotal() {
-        return result;
-    }
-
-
-
-    public void validCommand(String command) throws UnsupportedCalculatorOperationException {
-        // Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/] \\d*.?\\d+$");
-        Pattern pattern1 = Pattern.compile("(\\S+) \\d*\\.?\\d+");
-        if (!pattern1.matcher(command).matches()) {
-            throw new UnsupportedCalculatorOperationException();
-        }
-    }
-
-
-}
