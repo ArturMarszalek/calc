@@ -10,7 +10,8 @@ public class Calculator {
     double result = 0;
     HashMap<String,ICalculateActionStrategy> strategies = new HashMap<>();
 
-    public Calculator(){
+    public Calculator(double startValue){
+        result = startValue;
 
         strategies.put("+",new AddStrategy());
         strategies.put("*",new MultiplyStrategy());
@@ -20,14 +21,21 @@ public class Calculator {
         strategies.put("#", new SqrtNumbers());
     }
 
-    public double execute(String command) throws UnsupportedCalculatorOpperationException {
+    public Calculator(){
+        this(0);
+    }
+    public java.util.Set<String> getAvailableStringCalculator(){
+        return strategies.keySet();
+    }
+
+    public double execute(String command) throws UnsupportedCalculatorOpperationException, UnsupportedArithmeticOperationException {
 
         validCommand(command);
 
         String[] tab = command.split(" ");
         String arithmeticChar = tab[0];
         double number = Double.parseDouble(tab[1]);
-        return result = strategies.get(arithmeticChar).calculate(result, number);
+        return result = strategies.getOrDefault(arithmeticChar, new UnsupportedArithmeticOperationStrategy()).calculate(result, number);
 
 
     }
@@ -37,7 +45,7 @@ public class Calculator {
     }
 
     private void validCommand(String command) throws UnsupportedCalculatorOpperationException {
-        Pattern pattern = Pattern.compile("[\\+\\-\\*\\/\\^\\#] \\d*\\.?\\d+");
+        Pattern pattern = Pattern.compile("(\\S+) \\d*\\.?\\d+");
         if (!pattern.matcher(command).matches()){
             throw new UnsupportedCalculatorOpperationException();
         }

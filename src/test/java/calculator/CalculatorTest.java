@@ -12,11 +12,11 @@ class CalculatorTest {
 
     @BeforeEach
     void setUp() {
-        calculator = new Calculator();
+        calculator = new Calculator(15);
     }
 
     @Test
-    void shouldAddNumber() throws UnsupportedCalculatorOpperationException {
+    void shouldAddNumber() throws UnsupportedCalculatorOpperationException, UnsupportedArithmeticOperationException {
         //given
 
         //when
@@ -26,7 +26,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSubtractNumber() throws UnsupportedCalculatorOpperationException {
+    void shouldSubtractNumber() throws UnsupportedCalculatorOpperationException, UnsupportedArithmeticOperationException {
         //given
 
         //when
@@ -36,7 +36,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldMultiplyNumbers() throws UnsupportedCalculatorOpperationException {
+    void shouldMultiplyNumbers() throws UnsupportedCalculatorOpperationException, UnsupportedArithmeticOperationException {
         //given
         calculator.execute("+ 3.5");
         //when
@@ -46,7 +46,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldDivideNumbers() throws UnsupportedCalculatorOpperationException {
+    void shouldDivideNumbers() throws UnsupportedCalculatorOpperationException, UnsupportedArithmeticOperationException {
         //given
         calculator.execute("+ 7.5");
         //when
@@ -56,7 +56,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldPowerNumbers() throws UnsupportedCalculatorOpperationException {
+    void shouldPowerNumbers() throws UnsupportedCalculatorOpperationException, UnsupportedArithmeticOperationException {
         //given
         calculator.execute("+ 2");
 
@@ -69,7 +69,7 @@ class CalculatorTest {
     }
 
     @Test
-    void ShouldSqrtNumbers() throws UnsupportedCalculatorOpperationException {
+    void ShouldSqrtNumbers() throws UnsupportedCalculatorOpperationException, UnsupportedArithmeticOperationException {
         //given
         calculator.execute("+ 16");
 
