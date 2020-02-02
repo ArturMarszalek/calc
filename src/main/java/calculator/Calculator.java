@@ -9,6 +9,11 @@ public class Calculator {
     double value = 0;
     HashMap<String, ICalculatorActionStrategy> strategies = new HashMap<>();
 
+    public Calculator(double startvalue) {
+this();
+value = startvalue;
+    }
+
     public Calculator() {
         strategies.put("+", new AddStrategy());
         strategies.put("*", new MultiplyStrategy());
@@ -43,8 +48,6 @@ public class Calculator {
         return strategies.keySet();
     }
 
-    public void setValue(double value) {
-        this.value = value;
-    }
+
 }
 
