@@ -6,7 +6,10 @@ public class Main {
     public static void main(String[] args){
 
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator(Double.parseDouble(args[0]));
+
+        double startValue ;
+        if (args.length>=1){ startValue = Double.parseDouble(args[0]);} else {startValue=0;}
+        Calculator calculator = new Calculator(startValue);
         boolean shouldQuit=false;
 
         while (!shouldQuit) {
@@ -17,7 +20,11 @@ public class Main {
                 if (operation.equals("exit")) {
                     break;
                 }
-                System.out.println("\nWynik = "+calculator.execute(operation));
+                if (operation.equals("back")){
+                    calculator.back();
+                }
+                else{
+                System.out.println("\nWynik = "+calculator.execute(operation));}
             } catch (UnsupportedArtimeticOperationletters e) {
                 System.out.println("Błędny znak! użyj "+calculator.getAritmeticSymbols());
             } catch (UnsupportedCalculatorOperationsException e) {

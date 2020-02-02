@@ -3,23 +3,22 @@ package calculator;
 
 import calculator.strategy.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
     Map<String, ICalculatorStrategy> strategies = new HashMap<>();
+    Stack<Double> stack = new Stack();
 
     double value = 0;
 
     public Calculator() {
-        addStrategies();
-    }
-
-    private void addStrategies() {
-        strategies.put("+", new AddStrategy());
         strategies.put("-", new SubtractionStrategy());
+        strategies.put("+", new AddStrategy());
         strategies.put("*", new MultiplyStrategy());
         strategies.put("/", new DivisionStrategy());
         strategies.put("^", new ExponentiationStrategy());
@@ -28,8 +27,13 @@ public class Calculator {
     }
 
     public Calculator(double value) {
-        addStrategies();
+        this();
         this.value = value;
+    }
+
+    public void back(){
+        this.value = stack.pop();
+        System.out.println(value);
     }
 
     public double execute(String command) throws Exception {
@@ -42,9 +46,11 @@ public class Calculator {
 
 
 
-
+        stack.push(value);
       //  value = strategies.get(operator).calculate(value, Double.parseDouble(number));
         value = strategies.getOrDefault(operator, new UnsupportesArithmeticOperationaStrategy()).calculate(value, Double.parseDouble(number));
+
+
 
         return value;
 

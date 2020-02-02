@@ -64,9 +64,7 @@ class CalculatorTest {
         //when
         try {
             calculator.execute("fdsfds 2");
-        }
-        catch (UnsupportedArtimeticOperationletters e)
-        {
+        } catch (UnsupportedArtimeticOperationletters e) {
             expectedException = e;
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,9 +80,7 @@ class CalculatorTest {
         //when
         try {
             calculator.execute("- bbfdb vdbd");
-        }
-        catch (UnsupportedCalculatorOperationsException e)
-        {
+        } catch (UnsupportedCalculatorOperationsException e) {
             expectedException = e;
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,8 +101,8 @@ class CalculatorTest {
     }
 
 
-
-    @Test //potegowanie
+    @Test
+        //potegowanie
     void shouldExponentiation() throws Exception {
         //given
         calculator.execute("+ 3");
@@ -118,7 +114,8 @@ class CalculatorTest {
 
     }
 
-    @Test //pierwiastkowanie
+    @Test
+        //pierwiastkowanie
     void shouldRootExtraction() throws Exception {
         //given
         calculator.execute("+ 27");
@@ -127,5 +124,29 @@ class CalculatorTest {
         double result = calculator.execute("r 3");
         //then
         assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    void shouldBackToPreviousValue1() throws Exception {
+        calculator.execute("+ 7");
+        calculator.execute("+ 15");
+        calculator.back();
+        assertThat(calculator.value).isEqualTo(7);
+    }
+    @Test
+    void shouldBackToPreviousValue() throws Exception {
+        calculator.execute("+ 3");
+        calculator.execute("+ 5");
+        calculator.back();
+        assertThat(calculator.value).isEqualTo(3);
+    }
+    @Test
+    void shouldBackToPreviousValue2() throws Exception {
+        calculator.execute("+ 3");
+        calculator.execute("+ 5");
+        calculator.execute("+ 2");
+        calculator.back();
+        calculator.back();
+        assertThat(calculator.value).isEqualTo(3);
     }
 }
