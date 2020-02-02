@@ -113,4 +113,28 @@ class CalculatorTest {
         //then
         assertThat(calculator.result).isEqualTo(3);
     }
+
+    @Test
+    void shouldUndoToPreviousValue() throws Exception, CantDivideByZeroException {
+        //given
+        calculator.execute("+ 3");
+        calculator.execute("+ 5");
+        //when
+        calculator.undo();
+        //then
+        assertThat(calculator.result).isEqualTo(3);
+    }
+    @Test
+    void shouldRodoToPreviousValue() throws Exception, CantDivideByZeroException {
+        //given
+        calculator.execute("+ 3");
+        calculator.execute("+ 5");
+        calculator.undo();
+        //when
+        calculator.redo();
+        //then
+        assertThat(calculator.result).isEqualTo(8);
+    }
+
+
 }

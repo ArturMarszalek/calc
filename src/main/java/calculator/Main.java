@@ -38,7 +38,16 @@ public class Main {
                 if (result.equals("back")){
                     calculator.back();
                     continue;
+                }if (result.equals("undo")){
+                    calculator.undo();
+                    continue;
+                }if (result.equals("redo")){
+                    calculator.redo();
+                    continue;
                 }
+
+
+
                 calculator.execute(result);
 
             } catch (UnsupportedStrategyOperationException e) {

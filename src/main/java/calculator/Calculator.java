@@ -6,6 +6,7 @@ import calculator.exceptions.UnsupportedPatternOpperationException;
 import calculator.exceptions.UnsupportedStrategyOperationException;
 import calculator.operations.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
 import java.util.regex.Pattern;
@@ -14,9 +15,12 @@ public class Calculator {
     double result;
     HashMap<String, ICalcOperations> operationsHashMap = new HashMap<>();
     Stack<Double> operationList = new Stack<>();
+    ArrayList<Double> historicalValue = new ArrayList<>();
+    int historicalValueIndex;
 
     public Calculator(double startValue) {
         result = startValue;
+        historicalValue.add(startValue);
         operationsHashMap.put("+", new AddNumber());
         operationsHashMap.put("-", new SubtractNumber());
         operationsHashMap.put("*", new MultiplyNumber());
@@ -28,6 +32,7 @@ public class Calculator {
 
     public Calculator() {
         result = 0;
+        historicalValue.add(0.0);
         operationsHashMap.put("+", new AddNumber());
         operationsHashMap.put("-", new SubtractNumber());
         operationsHashMap.put("*", new MultiplyNumber());
@@ -46,15 +51,25 @@ public class Calculator {
         //operacje defaultowe
         operationList.push(result);
         result = operationsHashMap.getOrDefault(splittedString[0], new defaultStrategy()).calculate(result, numberFromSplitting);
-
+        historicalValue.add(result);
+        historicalValueIndex=historicalValue.size()-1;
         return result;
+    }
 
+    public void undo() {
 
+        historicalValueIndex--;
+        result = historicalValue.get(historicalValueIndex);
+    }
+    public void redo(){
+
+        historicalValueIndex++;
+        result = historicalValue.get(historicalValueIndex);
     }
 
     public void back() {
 
-      result= operationList.pop();
+        result = operationList.pop();
 
     }
 
