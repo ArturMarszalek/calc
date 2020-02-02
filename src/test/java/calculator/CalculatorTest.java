@@ -66,6 +66,16 @@ class CalculatorTest {
     }
 
     @Test
+    void shouldRootsNumber() throws UnsupportedCalculatorOperationsException {
+        //given
+        calculator.execute("+ 9");
+        //when
+        double result = calculator.execute("% 9");
+        //then
+        assertThat(result).isEqualTo(3);
+    }
+
+    @Test
     void shouldThrowAnExceptionWhenPatterIsInvalid() {
         //given
         UnsupportedCalculatorOperationsException expectedException = null;

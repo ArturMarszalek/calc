@@ -16,6 +16,7 @@ public class Calculator {
         strategies.put("*", new MultiplyStrategy());
         strategies.put("/", new DivideStrategy());
         strategies.put("^", new PowerStrategy());
+        strategies.put("%", new RootsStrategy());
     }
 
     public double execute(String command) throws UnsupportedCalculatorOperationsException {
@@ -35,7 +36,7 @@ public class Calculator {
     }
 
     private void validCommand(String command) throws UnsupportedCalculatorOperationsException {
-        Pattern pattern = Pattern.compile("[+\\-*/^] [\\d,.]+");
+        Pattern pattern = Pattern.compile("[+\\-*/^%] [\\d,.]+");
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {
