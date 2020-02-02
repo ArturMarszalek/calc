@@ -56,6 +56,16 @@ class CalculatorTest {
     }
 
     @Test
+    void shouldPowerNumber() throws UnsupportedCalculatorOperationsException {
+        //given
+        calculator.execute("+ 3");
+        //when
+        double result = calculator.execute("^ 3");
+        //then
+        assertThat(result).isEqualTo(27);
+    }
+
+    @Test
     void shouldThrowAnExceptionWhenPatterIsInvalid() {
         //given
         UnsupportedCalculatorOperationsException expectedException = null;
