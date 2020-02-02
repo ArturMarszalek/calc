@@ -1,6 +1,9 @@
 package calculator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,7 +11,11 @@ public class Calculator {
     private HashMap<String, CalculatorStrategy> strategies = new HashMap<>();
     double result;
 
+    private Stack<Double> lastValue = new Stack<>();
 
+    public List<Double> getLastValue() {
+        return lastValue;
+    }
 
     public Calculator(double startValue) {
         result = startValue;
@@ -22,7 +29,7 @@ public class Calculator {
     }
 
     public double execute(String command) throws Exception {
-
+        lastValue.add(result);
         validCommand(command);
 
         String[] splitResult = command.split(" ");
@@ -44,6 +51,12 @@ public class Calculator {
         String[] splittedCommand = matcher.group().split(" ");
 
     }
+    public void revertLast(){
+        result = lastValue.peek();
+        lastValue.pop();
+    }
+
+
     public java.util.Set<String> getAritmeticSymbols(){
         return strategies.keySet();
     }

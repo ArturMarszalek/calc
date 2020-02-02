@@ -77,6 +77,14 @@ class CalculatorTest {
     }
 
     @Test
+    void shouldBackToPreviousValue() throws Exception {
+        calculator.execute("+ 3");
+        calculator.execute("+ 5");
+        calculator.revertLast();
+        assertThat(calculator.result).isEqualTo(3);
+    }
+
+    @Test
     void shouldThrowAnExceptionWhenPatterIsInvalid() throws Exception {
         //given
         UnsupportedCalculatorOperationsException expectedException = null;
