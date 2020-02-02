@@ -23,29 +23,31 @@ public class Main {
                 System.out.println("Proszę podać działanie i liczbę ");
                 Scanner sc = new Scanner(System.in);
                 String command = sc.nextLine();
+
                 if (command.equals("exit")) {
                     System.out.println("Wynik: " + calculator.getValue());
                     break;
                 }
-                if(command.equals("back")){
-
+                if (command.equals("back")) {
                     calculator.back();
-                    for (Double d: calculator.getHistoricalValue()
+                    System.out.println("*cofnij*");
+                    System.out.println("Wartość " + calculator.getValue());
+                    continue;
 
-                    ) {System.out.println("LOG: " +d);
-
-                    }
-                    break;
 
                 }
+                if (command.equals("redo")) {
+                    calculator.redo();
+                    System.out.println("*redo*");
+                    System.out.println("Wartość " + calculator.getValue());
+                   continue;
+
+
+                }
+
                 calculator.validation(command);
                 System.out.println("Wynik: " + calculator.getValue());
 
-                for (Double d: calculator.getHistoricalValue()
-
-                ) {System.out.println("LOG: " +d);
-
-                }
 
             }
         } catch (UnsuportedActionException e) {
@@ -54,8 +56,6 @@ public class Main {
         } catch (UnsuportedCommandException e) {
             System.out.println("Nie obsługiwana operacja ");
         }
-
-
 
 
     }

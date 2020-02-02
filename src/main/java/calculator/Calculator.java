@@ -9,11 +9,9 @@ import java.util.regex.Pattern;
 public class Calculator {
 
     private UnsupportedOperationStrategy defaultStrategy;
-    private Stack<Double> historicalValue = new Stack<>();
+    private List<Double> historicalValue = new ArrayList<>();
+    public int indexOfHistoricalValue = -1;
 
-    public Collection<Double> getHistoricalValue() {
-        return historicalValue;
-    }
 
     public Calculator(double args) {
         this.value = args;
@@ -36,6 +34,7 @@ public class Calculator {
 
     public double execute(String command) throws UnsuportedActionException, UnsuportedCommandException {
         historicalValue.add(value);
+        indexOfHistoricalValue++;
         String[] calculation = command.split(" ");
         defaultStrategy = new UnsupportedOperationStrategy();
         CalculationActionStrategy chosenStrategy = strategyMap.getOrDefault(calculation[0], defaultStrategy);
@@ -44,8 +43,16 @@ public class Calculator {
     }
 
     public void back() {
-        value = historicalValue.peek();
-        historicalValue.pop();
+
+        value = historicalValue.get(indexOfHistoricalValue);
+        indexOfHistoricalValue--;
+
+    }
+
+    public void redo() {
+        indexOfHistoricalValue++;
+        value = historicalValue.get(indexOfHistoricalValue);
+
     }
 
     public void validation(String commandToCheck) throws UnsuportedActionException, UnsuportedCommandException {
