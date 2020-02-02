@@ -1,6 +1,6 @@
 package calculator;
 
-public class MinusStrategy implements ICalculatorActionStrategy {
+public class SubtractStrategy implements ICalculatorActionStrategy {
 
     @Override
     public double calculate(double baseValue, double number) {
