@@ -21,7 +21,7 @@ public class Main {
         System.out.println("początkowa wartość: " + startValue);
 
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator();
+        Calculator calculator = new Calculator(startValue);
 
         boolean shouldQuit = false;
 
