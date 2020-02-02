@@ -14,11 +14,11 @@ class CalculatorTest {
         calculator = new Calculator();
     }
 
-   @Test
+    @Test
     void shouldAddNumber() throws Exception {
         //given
 
-       //when
+        //when
         double result = calculator.execute("+ 4");
         //then
         assertThat(result).isEqualTo(4);
@@ -37,7 +37,7 @@ class CalculatorTest {
     @Test
     void shouldMultiplyNumbers() throws Exception {
         //given
-       calculator.execute("+ 3.5");
+        calculator.execute("+ 3.5");
         //when
         double result = calculator.execute("* 3");
         //then
@@ -45,12 +45,34 @@ class CalculatorTest {
     }
 
     @Test
-   void shouldDivideNumbers() throws Exception {
+    void shouldDivideNumbers() throws Exception {
         //given
-      calculator.execute("+ 7.5");
-      //when
-      double result = calculator.execute("/ 2.5");
-       //then
-      assertThat(result).isEqualTo(3);
-   }
+        calculator.execute("+ 7.5");
+        //when
+        double result = calculator.execute("/ 2.5");
+        //then
+        assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    void shouldGivePowerOfNumber() throws Exception {
+        //given
+        calculator.execute("+ 2");
+        //when
+        double result = calculator.execute("^ 2");
+        //then
+        assertThat(result).isEqualTo(4);
+
+    }
+
+    @Test
+    void shouldGiveRootsOfNumber() throws Exception {
+        //given
+        calculator.execute("+ 4");
+        //when
+        double result = calculator.execute("! 2");
+        //then
+        assertThat(result).isEqualTo(2);
+
+    }
 }
