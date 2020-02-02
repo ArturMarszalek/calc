@@ -4,18 +4,31 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws UnsupportedPatternOpperation {
-        Calculator calculator = new Calculator();
+    public static void main(String[] args) {
+
+        double startValue = 0;
+        if (args.length >= 1) {
+            try {
+                startValue = Double.parseDouble(args[0]);
+            } catch (Exception e) {
+                System.out.println("Pierwszy argument nie jest liczbą");
+                return;
+            }
+        }
+
+        System.out.println("Początkowa wartość: " + startValue);
+
+        Calculator calculator = new Calculator(startValue);
         Scanner scanner = new Scanner(System.in);
 
-        while (true){
+        while (true) {
             System.out.println("Podaj komendę(dodawanie, odejmowanie, dzielenie, mnożenie, potegowanie, pierwiastkowanie, total, exit): ");
             String userChoice = scanner.nextLine();
 
-            if (userChoice.equals("exit")){
+            if (userChoice.equals("exit")) {
                 System.out.println("Program zakończył działanie");
                 break;
-            } else if (userChoice.equals("total")){
+            } else if (userChoice.equals("total")) {
                 System.out.println("Wynikiem działań jest: " + calculator.getResult());
                 continue;
             }
@@ -24,10 +37,11 @@ public class Main {
             } catch (UnsupportedPatternOpperation e) {
                 System.out.println("Niepoprawna komenda, spróbuj \n" +
                         "[znak arytmetyczny][spacja][liczba]");
+            } catch (UnsupportedArithmeticOperationException e) {
+                System.out.println("Dzień dobry, podałeś zły znak działania");
+            } catch (Exception e) {
+                System.out.println("błąd");
             }
-//                } catch (Exception unsupportedCalculatorOperation){
-//                System.out.println("Niepoprawna komenda");
         }
     }
 }
-

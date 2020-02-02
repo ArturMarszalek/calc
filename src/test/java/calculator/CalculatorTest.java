@@ -12,7 +12,7 @@ class CalculatorTest {
 
     @BeforeEach
     void setUp() {
-        calculator = new Calculator();
+        calculator = new Calculator(16);
     }
 
     @Test
@@ -56,14 +56,14 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldThrowAnExceptionWhenPatterIsInvalid() {
+    void shouldThrowAnExceptionWhenPatterIsInvalid() throws Exception {
         //given
-        Exception expectedException = null;
+        UnsupportedArithmeticOperationException expectedException = null;
         //when
         try {
             calculator.execute("-2");
         }
-        catch (Exception e)
+        catch (UnsupportedArithmeticOperationException e)
         {
             expectedException = e;
         }
@@ -83,7 +83,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldPowNumbers() throws UnsupportedPatternOpperation {
+    void shouldPowNumbers() throws Exception {
         // given
         calculator.execute("+ 2");
 
@@ -96,7 +96,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSqrtNumbers() throws UnsupportedPatternOpperation {
+    void shouldSqrtNumbers() throws Exception {
         // given
         calculator.execute("+ 16");
 

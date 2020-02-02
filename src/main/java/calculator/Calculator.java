@@ -8,8 +8,8 @@ public class Calculator {
     double result;
     HashMap<String, ICalculatorActionStrategy> strategies = new HashMap<>();
 
-
-    public Calculator() {
+    public Calculator(double startValue) {
+        result = startValue;
         strategies.put("+", new AddStrategy());
         strategies.put("*", new MultiplyStrategy());
         strategies.put("-", new SubtractStrategy());
@@ -18,16 +18,23 @@ public class Calculator {
         strategies.put("%", new SqrtNumbersStrategy());
     }
 
-    public double execute(String command) throws UnsupportedPatternOpperation {
+    public Calculator() {
+        this(0);
+    }
+
+    public double execute(String command) throws Exception {
         validCommand(command);
 
         String[] splitCommand = command.split(" ");
         result = strategies.get(splitCommand[0]).calculate(result, Double.parseDouble(splitCommand[1]));
         return result;
     }
+
+
     public double getResult() {
         return result;
     }
+
     public void validCommand(String command) throws UnsupportedPatternOpperation {
         Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/\\%] \\d*.?\\d+$");
 //        Pattern pattern1 = Pattern.compile("sqrt \\d*.?\\d+$");
@@ -36,4 +43,3 @@ public class Calculator {
         }
     }
 }
-
