@@ -1,33 +1,28 @@
 package calculator;
 
-
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
+        Scanner scanner = new Scanner(System.in);
+        Calculator calculator = new Calculator();
+        boolean shouldQuit=false;
 
-        try {
-            Scanner scanner = new Scanner(System.in);
-            boolean exit = true;
-            Calculator calculator = new Calculator();
-            while (exit) {
-                System.out.println("Wpisz polecenie: ");
-                String out = scanner.nextLine();
-                if(out.equals("total")){
-                    System.out.println("suma: " +calculator.total());
-                    continue;
+        while (!shouldQuit) {
+            System.out.print("Wprowadź działanie : ");
+
+            try {
+                String operation = scanner.nextLine();
+                if (operation.equals("exit")) {
+                    break;
                 }
-                if(!out.equals("exit")){
-                    System.out.println(calculator.execute(out));}
-                else{
-                    exit = false;
-                }
-
+                System.out.println("\nWynik = "+calculator.execute(operation));
+            } catch (UnsupportedCalculatorOperationsException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("błąd");
             }
-        } catch (Exception e) {
-            System.out.println("błędne polecenie, podaj poprawne");
-
         }
     }
 }
