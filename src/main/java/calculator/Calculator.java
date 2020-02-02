@@ -1,6 +1,7 @@
 package calculator;
 
 import java.util.HashMap;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,10 +9,12 @@ public class Calculator {
 
     double value = 0;
     HashMap<String, ICalculatorActionStrategy> strategies = new HashMap<>();
+    Stack<Double> stack = new Stack<>();
 
     public Calculator(double startvalue) {
-this();
-value = startvalue;
+        this();
+        value = startvalue;
+
     }
 
     public Calculator() {
@@ -21,6 +24,7 @@ value = startvalue;
         strategies.put("/", new DivideStrategy());
         strategies.put("^", new ExponentiationStrategy());
         strategies.put("#", new RootExtractionStrategy());
+
     }
 
     public double execute(String command) throws Exception {
@@ -29,7 +33,9 @@ value = startvalue;
         String[] splittedCommand = matcher.group().split(" ");
         double number = Double.parseDouble(splittedCommand[1]);
         String operator = splittedCommand[0];
+        stack.push(value);
         value = strategies.getOrDefault(operator, new WrongInputStrategy()).calculate(value, number);
+
         return value;
     }
 
@@ -48,6 +54,12 @@ value = startvalue;
         return strategies.keySet();
     }
 
+    public void back() {
+
+        this.value = stack.pop();
+        System.out.println(this.value);
+
+    }
 
 }
 

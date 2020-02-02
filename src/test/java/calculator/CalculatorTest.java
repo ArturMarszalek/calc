@@ -92,4 +92,20 @@ class CalculatorTest {
         assertThat(result).isEqualTo(3);
 
     }
+
+    @Test
+    void shouldBackToPreviousValue() throws Exception {
+        calculator.execute("+ 3");
+        calculator.execute("+ 5");
+        calculator.back();
+        assertThat(calculator.value).isEqualTo(3);
+    }
+
+    @Test
+    void shouldBackToPreviousValue1() throws Exception {
+        calculator.execute("+ 7");
+        calculator.execute("+ 15");
+        calculator.back();
+        assertThat(calculator.value).isEqualTo(7);
+    }
 }

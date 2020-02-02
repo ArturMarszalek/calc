@@ -12,7 +12,7 @@ public class Main {
         if (args.length >= 1) {
             try {
                 startValue = Double.parseDouble(args[0]);
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Pierwszy argument nie jest liczbą");
                 return;
             }
@@ -33,7 +33,11 @@ public class Main {
                 if (operation.equals("exit")) {
                     break;
                 }
-                System.out.println("\nWynik = " + calculator.execute(operation));
+                if (operation.equals("back")) {
+                    calculator.back();
+                } else {
+                    System.out.println("\nWynik = " + calculator.execute(operation));
+                }
             } catch (UnsupportedCalculatorOperationsException e) {
                 System.out.println(e.getMessage() + " wybierz: " + calculator.availableOperations());
             } catch (Exception e) {
