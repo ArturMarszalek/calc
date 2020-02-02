@@ -1,9 +1,7 @@
 package calculator;
 
 import calculator.Calculator;
-import calculator.exceptions.CantDivideByZeroException;
-import calculator.exceptions.UnsupportedPatternOpperationException;
-import calculator.exceptions.UnsupportedStrategyOperationException;
+import calculator.exceptions.*;
 
 import java.util.Scanner;
 
@@ -26,7 +24,7 @@ public class Main {
 
         while (true) {
             try {
-                System.out.println("Available operations: " + calculator.operationsHashMap.keySet() + " exit, total, back:");
+                System.out.println("Available operations: " + calculator.operationsHashMap.keySet() + " exit, total, undo, redo:");
                 result = scanner.nextLine();
                 if (result.equals("exit")) {
                     break;
@@ -54,6 +52,10 @@ public class Main {
                 System.out.println("Incorrect writing schematic");
             } catch (UnsupportedPatternOpperationException e) {
                 System.out.println("Incorrect operration");
+            } catch (CantRedoFurtherException e) {
+                System.out.println("You can't redo further");
+            }catch (CantUndoFurtherException e) {
+                System.out.println("You can't undo further");
             } catch (CantDivideByZeroException cantDivideByZero) {
                 System.out.println("You cant divide by zero!");
             } catch (Exception e) {

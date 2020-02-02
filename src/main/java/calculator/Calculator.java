@@ -1,9 +1,7 @@
 package calculator;
 
 
-import calculator.exceptions.CantDivideByZeroException;
-import calculator.exceptions.UnsupportedPatternOpperationException;
-import calculator.exceptions.UnsupportedStrategyOperationException;
+import calculator.exceptions.*;
 import calculator.operations.*;
 
 import java.util.ArrayList;
@@ -43,8 +41,8 @@ public class Calculator {
     }
 
     public double execute(String command) throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
-        /* validateWrongOperation(command);
-        validateOperation(command);*/
+        validateWrongOperation(command);
+        //validateOperation(command);
         String[] splittedString = command.split(" ");
         double numberFromSplitting = Double.parseDouble(splittedString[1]);
         //      result = operationsHashMap.get(splittedString[0]).calculate(result, numberFromSplitting);
@@ -52,17 +50,22 @@ public class Calculator {
         operationList.push(result);
         result = operationsHashMap.getOrDefault(splittedString[0], new defaultStrategy()).calculate(result, numberFromSplitting);
         historicalValue.add(result);
-        historicalValueIndex=historicalValue.size()-1;
+        historicalValueIndex = historicalValue.size() - 1;
         return result;
     }
 
-    public void undo() {
-
+    public void undo() throws CantUndoFurtherException {
+        if (historicalValueIndex <= 0) {
+            throw new CantUndoFurtherException();
+        }
         historicalValueIndex--;
         result = historicalValue.get(historicalValueIndex);
     }
-    public void redo(){
 
+    public void redo() throws CantRedoFurtherException {
+        if (historicalValueIndex + 1 >= historicalValue.size()) {
+            throw new CantRedoFurtherException();
+        }
         historicalValueIndex++;
         result = historicalValue.get(historicalValueIndex);
     }
@@ -70,7 +73,6 @@ public class Calculator {
     public void back() {
 
         result = operationList.pop();
-
     }
 
     public double getResult() {
