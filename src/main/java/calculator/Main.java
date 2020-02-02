@@ -2,6 +2,7 @@ package calculator;
 
 import strategy.RootStrategy;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -23,14 +24,12 @@ public class Main {
             }
             try {
                 System.out.println("Wynikiem działania jest: " + calculator.execute(userChoice));
+            } catch (UnsupportedArithmeticOperationException e) {
+                System.out.println("Podałeś zły znak działania, spróbuj jedną z następujących" + calculator.getAvailableStringCalculator());
             } catch (UnsupportedCalculatorOperationException e) {
                 System.out.println("Niepoprawna komenda, spróbuj \n" +
-                        "[znak arytmetyczny][spacja][liczba]");
+                        calculator.getAvailableStringCalculator() + "[spacja][liczba]");
             }
-//                } catch (Exception unsupportedCalculatorOperation){
-//                System.out.println("Niepoprawna komenda");
-
-
         }
     }
 }

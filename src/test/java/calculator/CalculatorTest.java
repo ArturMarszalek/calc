@@ -16,7 +16,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddNumber() throws UnsupportedCalculatorOperationException {
+    void shouldAddNumber() throws UnsupportedCalculatorOperationException, UnsupportedArithmeticOperationException {
         //given
 
         //when
@@ -26,7 +26,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSubtractNumber() throws UnsupportedCalculatorOperationException {
+    void shouldSubtractNumber() throws UnsupportedCalculatorOperationException, UnsupportedArithmeticOperationException {
         //given
 
         //when
@@ -36,7 +36,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldMultiplyNumbers() throws UnsupportedCalculatorOperationException {
+    void shouldMultiplyNumbers() throws UnsupportedCalculatorOperationException, UnsupportedArithmeticOperationException {
         //given
         calculator.execute("+ 3.5");
         //when
@@ -46,7 +46,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldDivideNumbers() throws UnsupportedCalculatorOperationException {
+    void shouldDivideNumbers() throws UnsupportedCalculatorOperationException, UnsupportedArithmeticOperationException {
         //given
         calculator.execute("+ 7.5");
         //when
@@ -65,6 +65,8 @@ void shouldThrowAnExceptionWhenPatterIsInvalid() throws UnsupportedCalculatorOpe
     catch (UnsupportedCalculatorOperationException e)
     {
         expectedException = e;
+    } catch (UnsupportedArithmeticOperationException e) {
+        e.printStackTrace();
     }
     //then
     assertThat(expectedException).isNotNull();

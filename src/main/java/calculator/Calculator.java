@@ -20,14 +20,18 @@ public class Calculator {
         strategies.put("^", new ExponentiationStrategy());
     }
 
-    public double execute(String command) throws UnsupportedCalculatorOperationException {
+    public java.util.Set<String> getAvailableStringCalculator(){
+        return strategies.keySet();
+    }
+
+    public double execute(String command) throws UnsupportedCalculatorOperationException, UnsupportedArithmeticOperationException {
 
         validCommand(command);
 
         String[] splitCommand = command.split(" ");
-        String arithmeticChar = splitCommand[0];
+        String operator = splitCommand[0];
         double number = Double.parseDouble(splitCommand[1]);
-        return result = strategies.get(arithmeticChar).calculate(result, number);
+        return result = strategies.getOrDefault(operator, new UnsupportedArithmeticStrategy()).calculate(result, number);
 
     }
         // METODA ROBIENIA SWITCH / CASE
@@ -61,9 +65,9 @@ public class Calculator {
         return result;
     }
     public void validCommand(String command) throws UnsupportedCalculatorOperationException {
-        Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/] \\d*.?\\d+$");
-        Pattern pattern1 = Pattern.compile("sqrt");
-        if (!pattern.matcher(command).matches() && !pattern1.matcher(command).matches()) {
+        // Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/] \\d*.?\\d+$");
+        Pattern pattern1 = Pattern.compile("(\\S+) \\d*\\.?\\d+");
+        if (!pattern1.matcher(command).matches()) {
             throw new UnsupportedCalculatorOperationException();
         }
     }
