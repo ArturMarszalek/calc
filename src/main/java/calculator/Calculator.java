@@ -43,7 +43,7 @@ public class Calculator {
 
     private Matcher getValidate(String command) throws UnsupportedCalculatorOperationsException {
         //  Pattern pattern = Pattern.compile("^[\\+,\\-,\\*,\\/] [\\d,.]+$"); <--- to zadziała jak używmy fond zamiast matches()
-        Pattern pattern = Pattern.compile("^((\\S+) ?(\\S+)$)");
+        Pattern pattern = Pattern.compile("^((\\S+) ?(\\S+)?$)");
         Matcher matcher = pattern.matcher(command);
         if (!matcher.matches()) {
             throw new UnsupportedCalculatorOperationsException("Niepoprawne dane (UnsupportedCalculatonOperationsExecutions)");
@@ -53,6 +53,10 @@ public class Calculator {
 
     public java.util.Set<String> getAritmeticSymbols(){
         return strategies.keySet();
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 }
 
