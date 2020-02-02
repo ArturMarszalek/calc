@@ -86,4 +86,22 @@ class CalculatorTest {
         //then
         assertThat(expectedException).isNotNull();
     }
+    @Test
+    void shouldPowNumbers() throws Exception {
+        //given
+
+
+        calculator.execute("+ 2");
+        //when
+        double result = calculator.execute("^ 2");
+        //then
+        assertThat(result).isEqualTo(4);
+    }
+    @Test
+    void shouldSquareNumbers() throws Exception {
+        calculator.execute("+ 9");
+        double result = calculator.execute("% 2");
+
+        assertThat(result).isEqualTo(3);
+    }
 }
