@@ -18,7 +18,6 @@ public class Calculator {
         strategies.put("/", new DivideStrategy());
         strategies.put("!", new RootStrategy());
         strategies.put("^", new ExponentiationStrategy());
-        strategies.put("sqrt", new ExponentiationStrategy());
     }
 
     public double execute(String command) throws UnsupportedCalculatorOperationException {
@@ -63,7 +62,7 @@ public class Calculator {
     }
     public void validCommand(String command) throws UnsupportedCalculatorOperationException {
         Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/] \\d*.?\\d+$");
-        Pattern pattern1 = Pattern.compile("sqrt \\d*.?\\d+$");
+        Pattern pattern1 = Pattern.compile("sqrt");
         if (!pattern.matcher(command).matches() && !pattern1.matcher(command).matches()) {
             throw new UnsupportedCalculatorOperationException();
         }
