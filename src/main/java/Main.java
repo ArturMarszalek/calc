@@ -27,8 +27,26 @@ public class Main {
                     System.out.println("Wynik: " + calculator.getValue());
                     break;
                 }
+                if(command.equals("back")){
+
+                    calculator.back();
+                    for (Double d: calculator.getHistoricalValue()
+
+                    ) {System.out.println("LOG: " +d);
+
+                    }
+                    break;
+
+                }
                 calculator.validation(command);
                 System.out.println("Wynik: " + calculator.getValue());
+
+                for (Double d: calculator.getHistoricalValue()
+
+                ) {System.out.println("LOG: " +d);
+
+                }
+
             }
         } catch (UnsuportedActionException e) {
             System.out.println("Nie poprawny format");
@@ -36,6 +54,8 @@ public class Main {
         } catch (UnsuportedCommandException e) {
             System.out.println("Nie obsługiwana operacja ");
         }
+
+
 
 
     }
