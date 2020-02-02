@@ -16,7 +16,7 @@ public class Main {
 
         while (true) {
             try {
-                System.out.print("what to do(+ , - , * , / , ^, sqrt, exit, total): ");
+                System.out.println("Available operations: "+calculator.operationsHashMap.keySet()+ " exit, total:");
                 result = scanner.nextLine();
                 if (result.equals("exit")) {
                     break;
@@ -28,15 +28,15 @@ public class Main {
 
                 calculator.execute(result);
 
+            } catch (UnsupportedStrategyOperationException e) {
+                System.out.println("Incorrect writing schematic");
             } catch (UnsupportedPatternOpperationException e) {
-                System.out.println("Operation dont match pattern");
-            } catch (Exception e) {
-                System.out.println("Incorrect operation");
-            } catch (CantDivideByZeroException cantDivideByZero) {
+                System.out.println("Incorrect operration");
+            }  catch (CantDivideByZeroException cantDivideByZero) {
                 System.out.println("You cant divide by zero!");
-            }/*catch(UnsupportedStrategyOperationException e){
-                System.out.println("Inncorrect strategy operation");
-            }*/
+            }catch (Exception e) {
+                System.out.println("Other error");
+            }
 
         }
 

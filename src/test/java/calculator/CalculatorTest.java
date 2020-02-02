@@ -2,6 +2,7 @@ package calculator;
 
 import calculator.exceptions.CantDivideByZeroException;
 import calculator.exceptions.UnsupportedPatternOpperationException;
+import calculator.exceptions.UnsupportedStrategyOperationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+    void shouldAddNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
         //given
 
         //when
@@ -28,7 +29,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSubtractNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+    void shouldSubtractNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
         //given
 
         //when
@@ -38,7 +39,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldMultiplyNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+    void shouldMultiplyNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
         //given
         calculator.execute("+ 3.5");
         //when
@@ -48,7 +49,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldDivideNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+    void shouldDivideNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
         //given
         calculator.execute("+ 7.5");
         //when
@@ -58,7 +59,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldNotDivideNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+    void shouldNotDivideNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
         //given
         calculator.execute("+ 7.5");
         //when
@@ -79,7 +80,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldShowTotal() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+    void shouldShowTotal() throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
         //given
         calculator.execute("+ 7.5");
         //when
@@ -89,7 +90,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouSqrtNumbers() throws CantDivideByZeroException, UnsupportedPatternOpperationException {
+    void shouSqrtNumbers() throws CantDivideByZeroException, UnsupportedPatternOpperationException, UnsupportedStrategyOperationException {
         //given
 
         //when
@@ -99,7 +100,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldPowerNumbers() throws CantDivideByZeroException, UnsupportedPatternOpperationException {
+    void shouldPowerNumbers() throws CantDivideByZeroException, UnsupportedPatternOpperationException, UnsupportedStrategyOperationException {
         //given
         calculator.execute("+ 2");
         //when

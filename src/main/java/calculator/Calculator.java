@@ -11,28 +11,25 @@ import java.util.regex.Pattern;
 
 public class Calculator {
     double result;
+    HashMap<String, ICalcOperations> operationsHashMap = new HashMap<>();
 
     public void validateOperation(String command) throws UnsupportedPatternOpperationException {
-        Pattern pattern = Pattern.compile("([+\\-*/\\^]|(sqrt)){1} \\d*\\.?\\d*");
+        Pattern pattern = Pattern.compile("([+\\-*/^]|(sqrt)){1} \\d*\\.?\\d*");
 
         if (!pattern.matcher(command).matches()) {
             throw new UnsupportedPatternOpperationException();
         }
     }
-    public void validateWrongOperation(String command) throws UnsupportedStrategyOperationException {
-        Pattern pattern = Pattern.compile(".+ \\d*\\.?\\d*");
 
-        if (!pattern.matcher(command).matches()){
+    public void validateWrongOperation(String command) throws UnsupportedStrategyOperationException {
+        Pattern pattern = Pattern.compile("(\\S+) \\d*\\.?\\d*");
+
+        if (!pattern.matcher(command).matches()) {
             throw new UnsupportedStrategyOperationException();
         }
     }
 
-
-    public double execute(String command) throws UnsupportedPatternOpperationException, CantDivideByZeroException {
-        validateOperation(command);
-        String[] splittedString = command.split(" ");
-        double numberFromSplitting = Double.parseDouble(splittedString[1]);
-        HashMap<String, ICalcOperations> operationsHashMap = new HashMap<>();
+    public Calculator() {
 
         operationsHashMap.put("+", new AddNumber());
         operationsHashMap.put("-", new SubtractNumber());
@@ -41,8 +38,22 @@ public class Calculator {
         operationsHashMap.put("sqrt", new SqrtNumber());
         operationsHashMap.put("^", new PowerNumbers());
 
-        result = operationsHashMap.get(splittedString[0]).calculate(result, numberFromSplitting);
+    }
+
+
+    public double execute(String command) throws UnsupportedPatternOpperationException, CantDivideByZeroException, UnsupportedStrategyOperationException {
+     /*   validateWrongOperation(command);
+        validateOperation(command);*/
+
+        String[] splittedString = command.split(" ");
+        double numberFromSplitting = Double.parseDouble(splittedString[1]);
+
+  //      result = operationsHashMap.get(splittedString[0]).calculate(result, numberFromSplitting);
+
+//operacje defaultowe
+        operationsHashMap.getOrDefault(splittedString[0],new defaultStrategy()).calculate(result,numberFromSplitting);
         return result;
+
 
     }
 
