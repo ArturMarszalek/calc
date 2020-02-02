@@ -18,6 +18,8 @@ public class Calculator {
         strategies.put("-", new SubtractionStrategy());
         strategies.put("*", new MultiplyStrategy());
         strategies.put("/", new DivisionStrategy());
+        strategies.put("^", new ExponentiationStrategy());
+        strategies.put("r", new RootExtractionStrategy());
     }
 
     public double execute(String command) throws Exception {
@@ -35,7 +37,7 @@ public class Calculator {
 
     private Matcher getValidate(String command) throws UnsupportedCalculatorOperationsException {
         //  Pattern pattern = Pattern.compile("^[\\+,\\-,\\*,\\/] [\\d,.]+$"); <--- to zadziała jak używmy fond zamiast matches()
-        Pattern pattern = Pattern.compile("[\\+,\\-,\\*,\\/] [\\d,.]+");
+        Pattern pattern = Pattern.compile("[\\+,\\^,r,\\-,\\*,\\/] [\\d,.]+");
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {

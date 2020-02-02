@@ -85,4 +85,27 @@ class CalculatorTest {
         //then
         assertThat(expectedException).isNotNull();
     }
+
+    @Test //potegowanie
+    void shouldExponentiation() throws Exception {
+        //given
+        calculator.execute("+ 3");
+
+        //when
+        double result = calculator.execute("^ 3");
+        //then
+        assertThat(result).isEqualTo(27);
+
+    }
+
+    @Test //pierwiastkowanie
+    void shouldRootExtraction() throws Exception {
+        //given
+        calculator.execute("+ 27");
+
+        //when
+        double result = calculator.execute("r 3");
+        //then
+        assertThat(result).isEqualTo(3);
+    }
 }
