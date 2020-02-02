@@ -1,6 +1,9 @@
+package calculator;
+
 import calculator.Calculator;
-import calculator.CantDivideByZeroException;
-import calculator.UnsupportedPatternOpperationException;
+import calculator.exceptions.CantDivideByZeroException;
+import calculator.exceptions.UnsupportedPatternOpperationException;
+import calculator.exceptions.UnsupportedStrategyOperationException;
 
 import java.util.Scanner;
 
@@ -13,7 +16,7 @@ public class Main {
 
         while (true) {
             try {
-                System.out.print("what to do(+ , - , * , / , exit, total): ");
+                System.out.print("what to do(+ , - , * , / , ^, sqrt, exit, total): ");
                 result = scanner.nextLine();
                 if (result.equals("exit")) {
                     break;
@@ -31,7 +34,9 @@ public class Main {
                 System.out.println("Incorrect operation");
             } catch (CantDivideByZeroException cantDivideByZero) {
                 System.out.println("You cant divide by zero!");
-            }
+            }/*catch(UnsupportedStrategyOperationException e){
+                System.out.println("Inncorrect strategy operation");
+            }*/
 
         }
 

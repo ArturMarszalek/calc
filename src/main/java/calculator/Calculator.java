@@ -1,6 +1,9 @@
 package calculator;
 
 
+import calculator.exceptions.CantDivideByZeroException;
+import calculator.exceptions.UnsupportedPatternOpperationException;
+import calculator.exceptions.UnsupportedStrategyOperationException;
 import calculator.operations.*;
 
 import java.util.HashMap;
@@ -10,9 +13,17 @@ public class Calculator {
     double result;
 
     public void validateOperation(String command) throws UnsupportedPatternOpperationException {
-        Pattern pattern = Pattern.compile("[+\\-*/] \\d*\\.?\\d*");
+        Pattern pattern = Pattern.compile("([+\\-*/\\^]|(sqrt)){1} \\d*\\.?\\d*");
+
         if (!pattern.matcher(command).matches()) {
             throw new UnsupportedPatternOpperationException();
+        }
+    }
+    public void validateWrongOperation(String command) throws UnsupportedStrategyOperationException {
+        Pattern pattern = Pattern.compile(".+ \\d*\\.?\\d*");
+
+        if (!pattern.matcher(command).matches()){
+            throw new UnsupportedStrategyOperationException();
         }
     }
 
@@ -27,6 +38,8 @@ public class Calculator {
         operationsHashMap.put("-", new SubtractNumber());
         operationsHashMap.put("*", new MultiplyNumber());
         operationsHashMap.put("/", new DivideNumber());
+        operationsHashMap.put("sqrt", new SqrtNumber());
+        operationsHashMap.put("^", new PowerNumbers());
 
         result = operationsHashMap.get(splittedString[0]).calculate(result, numberFromSplitting);
         return result;

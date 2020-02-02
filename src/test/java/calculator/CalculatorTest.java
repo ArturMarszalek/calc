@@ -1,5 +1,7 @@
 package calculator;
 
+import calculator.exceptions.CantDivideByZeroException;
+import calculator.exceptions.UnsupportedPatternOpperationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,7 @@ class CalculatorTest {
     }
 
     @Test
-    void    shouldAddNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
+    void shouldAddNumber() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
         //given
 
         //when
@@ -54,6 +56,7 @@ class CalculatorTest {
         //then
         assertThat(result).isEqualTo(3);
     }
+
     @Test
     void shouldNotDivideNumbers() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
         //given
@@ -63,8 +66,9 @@ class CalculatorTest {
         //then
         Assertions.assertThrows(CantDivideByZeroException.class, () -> calculator.execute("/ 0"));
     }
+
     @Test
-    void shouldThrowUnsupportedPatternException()  {
+    void shouldThrowUnsupportedPatternException() {
         //given
 
         //when
@@ -73,6 +77,7 @@ class CalculatorTest {
         Assertions.assertThrows(UnsupportedPatternOpperationException.class,
                 () -> calculator.execute("/2.5"));
     }
+
     @Test
     void shouldShowTotal() throws UnsupportedPatternOpperationException, CantDivideByZeroException {
         //given
@@ -81,5 +86,25 @@ class CalculatorTest {
         calculator.execute("/ 2.5");
         //then
         assertThat(calculator.getResult()).isEqualTo(3);
+    }
+
+    @Test
+    void shouSqrtNumbers() throws CantDivideByZeroException, UnsupportedPatternOpperationException {
+        //given
+
+        //when
+        double result = calculator.execute("sqrt 4");
+        //then
+        assertThat(result).isEqualTo(2);
+    }
+
+    @Test
+    void shouldPowerNumbers() throws CantDivideByZeroException, UnsupportedPatternOpperationException {
+        //given
+        calculator.execute("+ 2");
+        //when
+        double result = calculator.execute("^ 2");
+        //then
+        assertThat(result).isEqualTo(4);
     }
 }

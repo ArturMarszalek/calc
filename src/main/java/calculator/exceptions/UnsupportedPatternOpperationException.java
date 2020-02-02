@@ -1,4 +1,4 @@
-package calculator;
+package calculator.exceptions;
 
 public class UnsupportedPatternOpperationException extends Exception {
 

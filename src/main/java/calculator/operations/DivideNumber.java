@@ -1,6 +1,6 @@
 package calculator.operations;
 
-import calculator.CantDivideByZeroException;
+import calculator.exceptions.CantDivideByZeroException;
 
 public class DivideNumber implements ICalcOperations {
 
