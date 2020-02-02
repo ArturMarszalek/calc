@@ -10,13 +10,18 @@ import java.util.regex.Pattern;
         HashMap<String, ICalculatorActionStrategy> strategies = new HashMap<>();
         double result;
 
-        public Calculator() {
+        public Calculator(double startValue) {
+            result = startValue;
             strategies.put("+", new AddStrategy());
             strategies.put("*", new MultiplyStrategy());
             strategies.put("-", new SubtractStrategy());
             strategies.put("/", new DivideStrategy());
             strategies.put("^", new PowerStrategy());
             strategies.put("%", new SqrtStrategy());
+        }
+
+        public Calculator(){
+            this(0);
         }
 
         public double execute(String command) throws UnsupportedCalculatorOperation, UnsupportedActionStrategyException {
@@ -30,6 +35,7 @@ import java.util.regex.Pattern;
         }
         public double getTotal() {
             return result;
+
         }
         public void validCommand(String command) throws UnsupportedCalculatorOperation {
             Pattern pattern = Pattern.compile("(\\S+) \\d*\\.?\\d+");
