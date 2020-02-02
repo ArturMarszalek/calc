@@ -12,9 +12,10 @@ import java.util.regex.Pattern;
 
 public class Calculator {
     Map<String, ICalculatorStrategy> strategies = new HashMap<>();
-    Stack<Double> stack = new Stack();
+    ArrayList<Double> historicalValues = new ArrayList<>();
 
     double value = 0;
+    int historicalIndex = 1;
 
     public Calculator() {
         strategies.put("-", new SubtractionStrategy());
@@ -24,15 +25,28 @@ public class Calculator {
         strategies.put("^", new ExponentiationStrategy());
         strategies.put("r", new RootExtractionStrategy());
         strategies.put("", new UnsupportesArithmeticOperationaStrategy());
+        historicalValues.add(0.0);
     }
 
     public Calculator(double value) {
         this();
         this.value = value;
+
     }
 
-    public void back(){
-        this.value = stack.pop();
+    public void back() {
+        if (historicalValues.size()==historicalIndex){historicalValues.add(value);}
+        if (historicalIndex>1){historicalIndex--;}
+        this.value = historicalValues.get(historicalIndex);
+        System.out.println("Index : " + historicalIndex);
+        System.out.println(value);
+    }
+
+    public void redo() {
+
+        historicalIndex++;
+        this.value = historicalValues.get(historicalIndex);
+        System.out.println("Index : " + historicalIndex);
         System.out.println(value);
     }
 
@@ -44,12 +58,12 @@ public class Calculator {
         String operator = splittedCommand[0];
         String number = splittedCommand[1];
 
+        //  value = strategies.get(operator).calculate(value, Double.parseDouble(number));
+        historicalIndex++;
+        historicalValues.add(value);
 
-
-        stack.push(value);
-      //  value = strategies.get(operator).calculate(value, Double.parseDouble(number));
         value = strategies.getOrDefault(operator, new UnsupportesArithmeticOperationaStrategy()).calculate(value, Double.parseDouble(number));
-
+        System.out.println("Index : " + historicalIndex);
 
 
         return value;
@@ -66,7 +80,7 @@ public class Calculator {
         return matcher;
     }
 
-    public java.util.Set<String> getAritmeticSymbols(){
+    public java.util.Set<String> getAritmeticSymbols() {
         return strategies.keySet();
     }
 

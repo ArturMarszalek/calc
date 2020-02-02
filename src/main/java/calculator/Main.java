@@ -20,9 +20,13 @@ public class Main {
                 if (operation.equals("exit")) {
                     break;
                 }
-                if (operation.equals("back")){
+                if (operation.equals("redo")){
+                    calculator.redo();
+                }
+                else if (operation.equals("back")){
                     calculator.back();
                 }
+
                 else{
                 System.out.println("\nWynik = "+calculator.execute(operation));}
             } catch (UnsupportedArtimeticOperationletters e) {
