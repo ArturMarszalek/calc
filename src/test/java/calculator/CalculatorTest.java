@@ -60,10 +60,28 @@ class CalculatorTest {
     @Test
     void shouldThrowAnExceptionWhenPatterIsInvalid() {
         //given
+        UnsupportedArtimeticOperationletters expectedException = null;
+        //when
+        try {
+            calculator.execute("fdsfds 2");
+        }
+        catch (UnsupportedArtimeticOperationletters e)
+        {
+            expectedException = e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //then
+        assertThat(expectedException).isNotNull();
+    }
+
+    @Test
+    void shouldThrowAnExceptionWhenPatterIsInvalid2() {
+        //given
         UnsupportedCalculatorOperationsException expectedException = null;
         //when
         try {
-            calculator.execute("-2");
+            calculator.execute("- bbfdb vdbd");
         }
         catch (UnsupportedCalculatorOperationsException e)
         {
@@ -79,12 +97,14 @@ class CalculatorTest {
     void shouldThrowAnExceptionWhenPatterIsInvalidAgain() {
         //given
         //when
-        UnsupportedCalculatorOperationsException expectedException = Assertions.assertThrows(UnsupportedCalculatorOperationsException.class,
-                () -> calculator.execute("-2"));
+        Exception Exception = Assertions.assertThrows(Exception.class,
+                () -> calculator.execute("- gfdbcx"));
 
         //then
-        assertThat(expectedException).isNotNull();
+        assertThat(Exception).isNotNull();
     }
+
+
 
     @Test //potegowanie
     void shouldExponentiation() throws Exception {
