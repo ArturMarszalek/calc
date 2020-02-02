@@ -81,4 +81,29 @@ class CalculatorTest {
         //then
         assertThat(expectedException).isNotNull();
     }
+
+    @Test
+    void shouldPowNumbers() throws UnsupportedPatternOpperation {
+        // given
+        calculator.execute("+ 2");
+
+        // when
+        double result = calculator.execute("^ 2");
+
+        // then
+        assertThat(result).isEqualTo(4);
+
+    }
+
+    @Test
+    void shouldSqrtNumbers() throws UnsupportedPatternOpperation {
+        // given
+        calculator.execute("+ 16");
+
+        // when
+        double result = calculator.execute("% 2");
+
+        // then
+        assertThat(result).isEqualTo(4);
+    }
 }

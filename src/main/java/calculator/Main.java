@@ -3,34 +3,31 @@ package calculator;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws UnsupportedPatternOpperation {
         Calculator calculator = new Calculator();
-        System.out.println("Witaj w kalkulatorze");
-        String result;
+        Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            try {
-                System.out.println("Co zrobic: ");
-                result = scanner.nextLine();
-                if (result.equals("exit")) {
-                    break;
-                }
-                if (result.equals("total")) {
-                    System.out.println(calculator.getResult());
-                    continue;
-                }
+        while (true){
+            System.out.println("Podaj komendę(dodawanie, odejmowanie, dzielenie, mnożenie, potegowanie, pierwiastkowanie, total, exit): ");
+            String userChoice = scanner.nextLine();
 
-                calculator.execute(result);
-
-            } catch (UnsupportedPatternOpperation e) {
-                System.out.println("Operation dont match pattern");
-            } catch (Exception e) {
-                System.out.println("Incorrect operation");
+            if (userChoice.equals("exit")){
+                System.out.println("Program zakończył działanie");
+                break;
+            } else if (userChoice.equals("total")){
+                System.out.println("Wynikiem działań jest: " + calculator.getResult());
+                continue;
             }
-
+            try {
+                System.out.println("Wynikiem działania jest: " + calculator.execute(userChoice));
+            } catch (UnsupportedPatternOpperation e) {
+                System.out.println("Niepoprawna komenda, spróbuj \n" +
+                        "[znak arytmetyczny][spacja][liczba]");
+            }
+//                } catch (Exception unsupportedCalculatorOperation){
+//                System.out.println("Niepoprawna komenda");
         }
-
     }
 }
+

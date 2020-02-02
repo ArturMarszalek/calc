@@ -1,43 +1,39 @@
 package calculator;
 
-
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class Calculator {
-    double result;
 
-    public void validateOperation(String command) throws UnsupportedPatternOpperation {
-        Pattern pattern = Pattern.compile("[+\\-*/] \\d*\\.?\\d*");
+    double result;
+    HashMap<String, ICalculatorActionStrategy> strategies = new HashMap<>();
+
+
+    public Calculator() {
+        strategies.put("+", new AddStrategy());
+        strategies.put("*", new MultiplyStrategy());
+        strategies.put("-", new SubtractStrategy());
+        strategies.put("/", new DivideStrategy());
+        strategies.put("^", new PowerNumbersStrategy());
+        strategies.put("%", new SqrtNumbersStrategy());
+    }
+
+    public double execute(String command) throws UnsupportedPatternOpperation {
+        validCommand(command);
+
+        String[] splitCommand = command.split(" ");
+        result = strategies.get(splitCommand[0]).calculate(result, Double.parseDouble(splitCommand[1]));
+        return result;
+    }
+    public double getResult() {
+        return result;
+    }
+    public void validCommand(String command) throws UnsupportedPatternOpperation {
+        Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/\\%] \\d*.?\\d+$");
+//        Pattern pattern1 = Pattern.compile("sqrt \\d*.?\\d+$");
         if (!pattern.matcher(command).matches()) {
             throw new UnsupportedPatternOpperation();
         }
     }
-
-    public double execute(String command) throws UnsupportedPatternOpperation {
-        validateOperation(command);
-        String[] splittedString = command.split(" ");
-        double numberFromSplitting = Double.parseDouble(splittedString[1]);
-
-        switch (splittedString[0]) {
-            case "+":
-                result += numberFromSplitting;
-                return result;
-            case "-":
-                result -= numberFromSplitting;
-                return result;
-            case "*":
-                result *= numberFromSplitting;
-                return result;
-            case "/":
-                result /= numberFromSplitting;
-                return result;
-            default:
-                return 0;
-        }
-
-    }
-
-    public double getResult() {
-        return result;
-    }
 }
+
