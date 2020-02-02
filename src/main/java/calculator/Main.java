@@ -5,12 +5,26 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         System.out.println("Witaj w magicznym kalkulatorze!");
+        double startValue = 0;
+        if (args.length >= 1) {
+            try {
+                startValue = Double.parseDouble(args[0]);
+
+            } catch (Exception e){
+                System.out.println("Argument powinien być liczbą");
+                return;
+            }
+            for (String arg : args) {
+                System.out.println("Początkowoa wartość została ustawiona na: " + startValue);
+            }
+
+        }
         System.out.println("Działanie: ");
 
-        Calculator calculator = new Calculator();
+        Calculator calculator = new Calculator(startValue);
         Scanner scanner = new Scanner(System.in);
 
 

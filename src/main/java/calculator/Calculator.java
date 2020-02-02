@@ -5,12 +5,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
-    HashMap<String, CalculatorStrategy> strategies = new HashMap<>();
+    private HashMap<String, CalculatorStrategy> strategies = new HashMap<>();
     double result;
 
 
 
-    public Calculator() {
+    public Calculator(double startValue) {
+        result = startValue;
         strategies.put("+", new AddStrategy());
         strategies.put("-", new SubtractStrategy());
         strategies.put("*", new MultiplyStrategy());

@@ -12,7 +12,8 @@ class CalculatorTest {
 
     @BeforeEach
     void setUp() {
-        calculator = new Calculator();
+        double startValue = 0;
+        calculator = new Calculator(startValue);
     }
 
     @Test
