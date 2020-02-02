@@ -13,6 +13,16 @@ public class Calculator {
     double result;
     HashMap<String, ICalcOperations> operationsHashMap = new HashMap<>();
 
+    public Calculator(double startValue) {
+        result = startValue;
+        operationsHashMap.put("+", new AddNumber());
+        operationsHashMap.put("-", new SubtractNumber());
+        operationsHashMap.put("*", new MultiplyNumber());
+        operationsHashMap.put("/", new DivideNumber());
+        operationsHashMap.put("sqrt", new SqrtNumber());
+        operationsHashMap.put("^", new PowerNumbers());
+    }
+
     public void validateOperation(String command) throws UnsupportedPatternOpperationException {
         Pattern pattern = Pattern.compile("([+\\-*/^]|(sqrt)){1} \\d*\\.?\\d*");
 
@@ -30,7 +40,7 @@ public class Calculator {
     }
 
     public Calculator() {
-
+        result = 0;
         operationsHashMap.put("+", new AddNumber());
         operationsHashMap.put("-", new SubtractNumber());
         operationsHashMap.put("*", new MultiplyNumber());
@@ -48,10 +58,10 @@ public class Calculator {
         String[] splittedString = command.split(" ");
         double numberFromSplitting = Double.parseDouble(splittedString[1]);
 
-  //      result = operationsHashMap.get(splittedString[0]).calculate(result, numberFromSplitting);
+        //      result = operationsHashMap.get(splittedString[0]).calculate(result, numberFromSplitting);
 
 //operacje defaultowe
-        operationsHashMap.getOrDefault(splittedString[0],new defaultStrategy()).calculate(result,numberFromSplitting);
+        result = operationsHashMap.getOrDefault(splittedString[0], new defaultStrategy()).calculate(result, numberFromSplitting);
         return result;
 
 

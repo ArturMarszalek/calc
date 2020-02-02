@@ -76,7 +76,7 @@ class CalculatorTest {
 
         //then
         Assertions.assertThrows(UnsupportedPatternOpperationException.class,
-                () -> calculator.execute("/2.5"));
+                () -> calculator.execute("sd 2.5"));
     }
 
     @Test
