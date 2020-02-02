@@ -18,7 +18,6 @@ class CalculatorTest {
     @Test
     void shouldAddNumber() throws Exception {
         //given
-
         //when
         double result = calculator.execute("+ 4");
         //then
@@ -28,8 +27,6 @@ class CalculatorTest {
     @Test
     void shouldSubtractNumber() throws Exception {
         //given
-
-
         //when
         double result = calculator.execute("- 7");
         //then
@@ -39,8 +36,6 @@ class CalculatorTest {
     @Test
     void shouldMultiplyNumbers() throws Exception {
         //given
-
-
         calculator.execute("+ 3.5");
         //when
         double result = calculator.execute("* 3");
@@ -51,23 +46,22 @@ class CalculatorTest {
     @Test
     void shouldDivideNumbers() throws Exception {
         //given
-
-
         calculator.execute("+ 7.5");
         //when
         double result = calculator.execute("/ 2.5");
         //then
         assertThat(result).isEqualTo(3);
+
     }
     @Test
     void shouldThrowAnExceptionWhenPatterIsInvalid() {
         //given
-        Exception expectedException = null;
+        UnsupportedCalculatorOperationsException expectedException = null;
         //when
         try {
             calculator.execute("-2");
         }
-        catch (Exception e)
+        catch (UnsupportedCalculatorOperationsException e)
         {
             expectedException = e;
         }
@@ -79,9 +73,8 @@ class CalculatorTest {
     void shouldThrowAnExceptionWhenPatterIsInvalidAgain() {
         //given
         //when
-        Exception expectedException = Assertions.assertThrows(Exception.class,
+        UnsupportedCalculatorOperationsException expectedException = Assertions.assertThrows(UnsupportedCalculatorOperationsException.class,
                 () -> calculator.execute("-2"));
-
         //then
         assertThat(expectedException).isNotNull();
     }
