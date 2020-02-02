@@ -18,10 +18,12 @@ public class Main {
                     break;
                 }
                 System.out.println("\nWynik = "+calculator.execute(operation));
+            } catch (UnsupportedArtimeticOperationletters e) {
+                System.out.println("Błędny znak! użyj "+calculator.getAritmeticSymbols());
             } catch (UnsupportedCalculatorOperationsException e) {
-                System.out.println(e.getMessage());
+                System.out.println("błędne dane");
             } catch (Exception e) {
-                System.out.println("błąd");
+                System.out.println("błędna wartość");
             }
         }
     }
