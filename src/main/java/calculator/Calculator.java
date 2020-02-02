@@ -15,6 +15,8 @@ import java.util.regex.Pattern;
             strategies.put("*", new MultiplyStrategy());
             strategies.put("-", new SubtractStrategy());
             strategies.put("/", new DivideStrategy());
+            strategies.put("^", new PowerStrategy());
+            strategies.put("%", new SqrtStrategy());
         }
 
         public double execute(String command) throws UnsupportedCalculatorOperation {
@@ -28,7 +30,7 @@ import java.util.regex.Pattern;
             return result;
         }
         public void validCommand(String command) throws UnsupportedCalculatorOperation {
-            Pattern pattern = Pattern.compile("[\\+,\\-,*,\\/] \\d*.?\\d+$");
+            Pattern pattern = Pattern.compile("[\\%,\\^,\\+,\\-,*,\\/] \\d*.?\\d+$");
             if (!pattern.matcher(command).matches()) {
                 throw new UnsupportedCalculatorOperation();
             }

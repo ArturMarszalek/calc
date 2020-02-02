@@ -56,15 +56,33 @@ class CalculatorTest {
     }
 
     @Test
+    void shouldPowerNumber() throws UnsupportedCalculatorOperation {
+        //given
+        calculator.execute("+ 2");
+        //when
+        double result = calculator.execute("^ 2");
+        //then
+        assertThat(result).isEqualTo(4);
+    }
+
+    @Test
+    void shouldSqrtNumber() throws UnsupportedCalculatorOperation {
+        //given
+        calculator.execute("+ 16");
+        //when
+        double result = calculator.execute("% 16");
+        //then
+        assertThat(result).isEqualTo(4);
+    }
+
+    @Test
     void shouldThrowAnExceptionWhenPatterIsInvalid() {
         //given
         UnsupportedCalculatorOperation expectedException = null;
         //when
         try {
             calculator.execute("-2");
-        }
-        catch (UnsupportedCalculatorOperation e)
-        {
+        } catch (UnsupportedCalculatorOperation e) {
             expectedException = e;
         }
         //then

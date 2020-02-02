@@ -10,7 +10,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true){
-            System.out.println("Podaj komendę(dodawanie, odejmowanie, dzielenie, mnożenie, total, exit): ");
+            System.out.println("Podaj komendę(dodawanie, odejmowanie, dzielenie, mnożenie, potegowanie, pierwiastkowanie, total, exit): ");
             String userChoice = scanner.nextLine();
 
             if (userChoice.equals("exit")){
