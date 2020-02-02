@@ -25,34 +25,11 @@ public class Calculator {
         Matcher matcher = getValidate(command);
         String[] splittedCommand = matcher.group().split(" ");
 
-        ICalculatorStrategy addStrategy = new AddStrategy(); //+++++
-        ICalculatorStrategy subtractionStrategy = new SubtractionStrategy(); //-----
-        ICalculatorStrategy multiplyStrategy = new MultiplyStrategy(); //******
-        ICalculatorStrategy divisionStrategy = new DivisionStrategy(); ///////
-
-
         String operator = splittedCommand[0];
         String number = splittedCommand[1];
 
         value = strategies.get(operator).calculate(value, Double.parseDouble(number));
         return value;
-
-//        switch (operator) {
-//            case "+":
-////                value += Double.parseDouble(number);
-//                value += addStrategy.calculate(value,Double.parseDouble(number));
-//                return value;
-//            case "-":
-//                value += subtractionStrategy.calculate(value,Double.parseDouble(number));
-//                return value;
-//            case "*":
-//                value = multiplyStrategy.calculate(value,Double.parseDouble(number));
-//                return value;
-//            case "/":
-//                value = divisionStrategy.calculate(value,Double.parseDouble(number));
-//                return value;
-//        }
-//        return 0;
 
     }
 
