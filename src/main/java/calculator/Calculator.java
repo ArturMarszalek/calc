@@ -14,6 +14,7 @@ public class Calculator {
         strategies.put("*", new MultiplyStrategy());
         strategies.put("-", new SubstractStrategy());
         strategies.put("/", new DivideStrategy());
+        strategies.put("^", new PowOrSquereStrategy());
     }
 
     public double execute(String command) throws UnsupportedCalculatorOperationsException {

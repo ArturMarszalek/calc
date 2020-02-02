@@ -85,4 +85,13 @@ class CalculatorTest {
         //then
         assertThat(expectedException).isNotNull();
     }
+
+    @Test
+    void shouldSquareRoot() throws Exception {
+        calculator.execute("+ 9");
+       double result = calculator.execute("pier");
+
+        assertThat(result).isEqualTo(3);
+
+    }
 }
