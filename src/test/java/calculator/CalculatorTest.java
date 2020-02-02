@@ -53,6 +53,7 @@ class CalculatorTest {
         assertThat(result).isEqualTo(3);
 
     }
+
     @Test
     void shouldThrowAnExceptionWhenPatterIsInvalid() {
         //given
@@ -60,9 +61,7 @@ class CalculatorTest {
         //when
         try {
             calculator.execute("-2");
-        }
-        catch (UnsupportedCalculatorOperationsException e)
-        {
+        } catch (UnsupportedCalculatorOperationsException e) {
             expectedException = e;
         }
         //then
@@ -77,5 +76,20 @@ class CalculatorTest {
                 () -> calculator.execute("-2"));
         //then
         assertThat(expectedException).isNotNull();
+    }
+
+    @Test
+    void testingExponentiation() throws Exception {
+        calculator.execute("+ 2");
+        double result = calculator.execute("^ 2");
+        assertThat(result).isEqualTo(4);
+    }
+
+    @Test
+    void shouldRootExtraction() throws Exception {
+        calculator.execute("+ 27");
+        double result = calculator.execute("# 3");
+        assertThat(result).isEqualTo(3);
+
     }
 }
