@@ -7,33 +7,43 @@ import java.util.regex.Pattern;
 
 public class Calculator {
 
-    public Calculator() {
+    private UnsupportedOperationStrategy defaultStrategy;
+
+    public Calculator(double args) {
+        this.value = args;
         strategyMap.put("+", new Add());
         strategyMap.put("-", new Substract());
         strategyMap.put("*", new Multiply());
         strategyMap.put("/", new Divide());
         strategyMap.put("^",new PowerOfNumber());
         strategyMap.put("'", new Roots());
+
+    }
+    public Calculator(){
+        this(0);
     }
 
-    double value = 0;
+    double value ;
 
     Map<String, CalculationActionStrategy> strategyMap = new HashMap<>();
 
-    public double execute(String command) {
+    public double execute(String command) throws UnsuportedActionException, UnsuportedCommandException {
         String[] calculation = command.split(" ");
-        value = strategyMap.get(calculation[0]).calculate(value, Double.parseDouble(calculation[1]));
+        defaultStrategy = new UnsupportedOperationStrategy();
+        CalculationActionStrategy chosenStrategy = strategyMap.getOrDefault(calculation[0], defaultStrategy);
+        value = chosenStrategy.calculate(value, Double.parseDouble(calculation[1]));
         return value;
     }
 
-    public void validation(String commandToCheck) throws UnsuportedCommandException {
-        Pattern pattern = Pattern.compile("[+,\\-,*,\\/,^,'] \\d?.+$");
+    public void validation(String commandToCheck) throws UnsuportedActionException, UnsuportedCommandException {
+        Pattern pattern = Pattern.compile("(\\S+) \\d*\\.?\\d+");
         Matcher matcher = pattern.matcher(commandToCheck);
         if (!matcher.matches())
-            throw new UnsuportedCommandException();
+            throw new UnsuportedActionException();
         else {
             execute(commandToCheck);
         }
+
     }
 
     public double getValue() {

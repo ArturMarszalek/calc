@@ -12,11 +12,11 @@ class CalculatorTest {
 
     @BeforeEach
     void setUp() {
-        calculator = new Calculator();
+        calculator = new Calculator(0);
     }
 
     @Test
-    void shouldAddNumber() {
+    void shouldAddNumber() throws UnsuportedActionException, UnsuportedCommandException {
         //given
 
         //when
@@ -26,7 +26,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSubtractNumber() {
+    void shouldSubtractNumber() throws UnsuportedActionException,UnsuportedCommandException {
         //given
 
         //when
@@ -36,7 +36,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldMultiplyNumbers() {
+    void shouldMultiplyNumbers() throws UnsuportedActionException,UnsuportedCommandException {
         //given
         calculator.execute("+ 3.5");
         //when
@@ -46,7 +46,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldDivideNumbers() {
+    void shouldDivideNumbers() throws UnsuportedActionException,UnsuportedCommandException {
         //given
         calculator.execute("+ 7.5");
         //when
@@ -58,27 +58,32 @@ class CalculatorTest {
     @Test
     void shouldThrowAnException() {
 
-        Assertions.assertThrows(UnsuportedCommandException.class, () -> calculator.validation("+1"));
+        Assertions.assertThrows(UnsuportedActionException.class, () -> calculator.validation("+1"));
 
     }
 
     @Test
     void shouldThrowAnExceptionSecondVersion() {
         //given
-        UnsuportedCommandException exception = null;
+        Exception exception = null;
+
         //when
         try {
             calculator.validation("+1");
-        } catch (UnsuportedCommandException e) {
+            calculator.validation("% 5");
+        }
+         catch (UnsuportedActionException | UnsuportedCommandException e) {
             exception = e;
         }
         //then
         assertThat(exception).isNotNull();
 
+
+
     }
 
     @Test
-    void shouldGivePowerOfNumber() {
+    void shouldGivePowerOfNumber() throws UnsuportedActionException, UnsuportedCommandException {
         //given
         calculator.execute("+ 2");
         //when
@@ -89,7 +94,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldGiveRootsOfNumber() {
+    void shouldGiveRootsOfNumber() throws UnsuportedActionException, UnsuportedCommandException {
         //given
         calculator.execute("+ 4");
         //when
