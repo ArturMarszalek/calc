@@ -1,7 +1,6 @@
 package calculator;
 
 
-
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,8 +13,10 @@ public class Calculator {
     public Calculator() {
         strategies.put("+", new AddStrategy());
         strategies.put("*", new MultiplyStrategy());
-//        strategies.put("-", new SubstractStrategy());
-//        strategies.put("/", new DivideStrategy());
+        //strategies.put("-", new SubstractStrategy());
+        strategies.put("/", new DivideStrategy());
+        strategies.put("^", new PowerStrategy());
+        strategies.put("?" , new SqrtStrategy());
     }
 
     public double execute(String command) throws UnsupportedCalculatorOperationException {
@@ -30,7 +31,7 @@ public class Calculator {
 
     private Matcher getValidate(String command) throws UnsupportedCalculatorOperationException {
 
-        Pattern pattern = Pattern.compile("[\\+,\\-,\\*,\\/] [\\d,.]+");
+        Pattern pattern = Pattern.compile("^[\\+,\\-,\\*,\\/,\\^,\\?] [\\d,.]+$");
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {
