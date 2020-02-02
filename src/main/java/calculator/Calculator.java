@@ -8,6 +8,8 @@ public class Calculator {
     HashMap<String, CalculatorStrategy> strategies = new HashMap<>();
     double result;
 
+
+
     public Calculator() {
         strategies.put("+", new AddStrategy());
         strategies.put("-", new SubtractStrategy());
@@ -15,7 +17,7 @@ public class Calculator {
         strategies.put("/", new DivideStrategy());
         strategies.put("^", new PowerStrategy());
         strategies.put("%", new RootsStrategy());
-        strategies.put("", new UnsuportedActionExceptionStrategy());
+        //strategies.put("", new UnsuportedActionExceptionStrategy());
     }
 
     public double execute(String command) throws Exception {
@@ -40,6 +42,9 @@ public class Calculator {
         }
         String[] splittedCommand = matcher.group().split(" ");
 
+    }
+    public java.util.Set<String> getAritmeticSymbols(){
+        return strategies.keySet();
     }
 
     public double getTotal() {
