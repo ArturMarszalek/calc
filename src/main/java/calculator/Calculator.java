@@ -11,6 +11,11 @@ public class Calculator {
     HashMap<String, ICalculationActionStrategy> strategies = new HashMap<>();
     double result;
 
+    public Calculator(double startValue) {
+        this();
+        result = startValue;
+
+    }
     public Calculator() {
         strategies.put("+", new AddStrategy());
         strategies.put("-", new SubstractStrategy());
@@ -18,8 +23,8 @@ public class Calculator {
         strategies.put("/", new DivideStrategy());
         strategies.put("!", new RootStrategy());
         strategies.put("^", new ExponentiationStrategy());
-    }
 
+    }
     public java.util.Set<String> getAvailableStringCalculator(){
         return strategies.keySet();
     }

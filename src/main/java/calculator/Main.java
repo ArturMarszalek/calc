@@ -7,8 +7,21 @@ import java.util.Scanner;
 
 public class Main {
 
+
     public static void main(String[] args) throws UnsupportedCalculatorOperationException {
-        Calculator calculator = new Calculator();
+
+        double startValue = 0;
+        if (args.length >= 1) {
+            try {
+                startValue = Double.parseDouble(args[0]);
+            } catch (Exception e) {
+                System.out.println("Podana wartość nie jest liczbą");
+                return;
+            }
+            System.out.println("Początkowa wartość: " + startValue);
+        }
+
+        Calculator calculator = new Calculator(startValue);
         Scanner scanner = new Scanner(System.in);
 
         while (true){
