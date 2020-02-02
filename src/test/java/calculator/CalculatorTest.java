@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,5 +58,32 @@ class CalculatorTest {
         double result = calculator.execute("/ 2.5");
         //then
         assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    void shouldThrowAnExceptionWhenPatterIsInvalid() {
+        //given
+        UnsupportedCalculatorOperationsException expectedException = null;
+        //when
+        try {
+            calculator.execute("-2");
+        }
+        catch (UnsupportedCalculatorOperationsException e)
+        {
+            expectedException = e;
+        }
+        //then
+        assertThat(expectedException).isNotNull();
+    }
+
+    @Test
+    void shouldThrowAnExceptionWhenPatterIsInvalidAgain() {
+        //given
+        //when
+        UnsupportedCalculatorOperationsException expectedException = Assertions.assertThrows(UnsupportedCalculatorOperationsException.class,
+                () -> calculator.execute("-2"));
+
+        //then
+        assertThat(expectedException).isNotNull();
     }
 }
