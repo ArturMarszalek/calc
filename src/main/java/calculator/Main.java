@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+        for (String arg:args){
+            System.out.println(arg);
+        }
+
         Scanner scanner = new Scanner(System.in);
         Calculator calculator = new Calculator();
         calculator.setValue(Double.parseDouble(args[0]));
