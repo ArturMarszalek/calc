@@ -12,7 +12,7 @@ class CalculatorTest {
 
     @BeforeEach
     void setUp() {
-        calculator = new Calculator(15);
+        calculator = new Calculator();
     }
 
     @Test
@@ -84,5 +84,27 @@ class CalculatorTest {
 
         //then
         assertThat(expectedException).isNotNull();
+    }
+
+    @Test
+    void shouldBackToPreviousValue() throws Exception {
+        calculator.execute("+ 3");
+        calculator.execute("+ 5");
+        calculator.execute("+ 8");
+        calculator.back();
+        assertThat(calculator.getResult()).isEqualTo(8);
+    }
+
+    @Test
+    void shouldBackToNextValue() throws Exception {
+        calculator.execute("+ 3");
+        calculator.execute("+ 5");
+        calculator.execute("+ 8");
+        calculator.back();
+        calculator.back();
+        calculator.reback();
+        calculator.execute("+ 4");
+        calculator.reback();
+        assertThat(calculator.getResult()).isEqualTo(12);
     }
 }

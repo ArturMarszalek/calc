@@ -49,6 +49,10 @@ public class Main {
                 case "total":
                     System.out.println("Wynik: " + calculator.getResult());
                     break;
+                case "back":
+                    calculator.back();
+                    System.out.println("Przywrócono poprzednią liczbę: " + calculator.getResult());
+                    break;
                 default:
                     try {
                         calculator.execute(command);
