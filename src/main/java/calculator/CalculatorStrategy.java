@@ -1,5 +1,5 @@
 package calculator;
 
 public interface CalculatorStrategy {
-    public double calculate(double baseValue, double splitResult);
+    public double calculate(double baseValue, double splitResult) throws UnsupportedAritmeticOperationsException, Exception;
 }

@@ -1,7 +1,5 @@
 package calculator;
 
-
-import java.time.DayOfWeek;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,26 +15,24 @@ public class Calculator {
         strategies.put("/", new DivideStrategy());
         strategies.put("^", new PowerStrategy());
         strategies.put("%", new RootsStrategy());
+        strategies.put("", new UnsuportedActionExceptionStrategy());
     }
 
-    public double execute(String command) throws UnsupportedCalculatorOperationsException {
+    public double execute(String command) throws Exception {
 
         validCommand(command);
 
         String[] splitResult = command.split(" ");
-
         String aritmeticChar = splitResult[0];
-
-        double value = Double.parseDouble(splitResult[1]);
-
-        result =  strategies.get(aritmeticChar).calculate(result, value);
+        double number = Double.parseDouble(splitResult[1]);
+        result = strategies.getOrDefault(aritmeticChar, new UnsuportedActionExceptionStrategy()).calculate(result, number);
         return result;
 
 
     }
 
     private void validCommand(String command) throws UnsupportedCalculatorOperationsException {
-        Pattern pattern = Pattern.compile("[+\\-*/^%] [\\d,.]+");
+        Pattern pattern = Pattern.compile("(\\S+) \\d*\\.?\\d+");
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {

@@ -25,7 +25,7 @@ public class Main {
                 } else {
                     double result = calculator.execute(userChoice);
                 }
-            } catch (UnsupportedCalculatorOperationsException e) {
+            } catch (UnsupportedCalculatorOperationsException | UnsupportedAritmeticOperationsException e) {
                 System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println("Wpisaono niepoprawną komendę");

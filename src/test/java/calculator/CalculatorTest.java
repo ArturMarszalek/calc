@@ -16,7 +16,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddNumber() throws UnsupportedCalculatorOperationsException {
+    void shouldAddNumber() throws Exception {
         //given
 
         //when
@@ -26,7 +26,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldSubtractNumber() throws UnsupportedCalculatorOperationsException {
+    void shouldSubtractNumber() throws Exception {
         //given
 
         //when
@@ -36,7 +36,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldMultiplyNumbers() throws UnsupportedCalculatorOperationsException {
+    void shouldMultiplyNumbers() throws Exception {
         //given
         calculator.execute("+ 3.5");
         //when
@@ -46,7 +46,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldDivideNumbers() throws UnsupportedCalculatorOperationsException {
+    void shouldDivideNumbers() throws Exception {
         //given
         calculator.execute("+ 7.5");
         //when
@@ -56,7 +56,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldPowerNumber() throws UnsupportedCalculatorOperationsException {
+    void shouldPowerNumber() throws Exception {
         //given
         calculator.execute("+ 3");
         //when
@@ -66,7 +66,7 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldRootsNumber() throws UnsupportedCalculatorOperationsException {
+    void shouldRootsNumber() throws Exception {
         //given
         calculator.execute("+ 9");
         //when
@@ -76,14 +76,14 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldThrowAnExceptionWhenPatterIsInvalid() {
+    void shouldThrowAnExceptionWhenPatterIsInvalid() throws Exception {
         //given
         UnsupportedCalculatorOperationsException expectedException = null;
         //when
         try {
             calculator.execute("-2");
-        } catch (UnsupportedCalculatorOperationsException e) {
-            expectedException = e;
+        } catch (UnsupportedCalculatorOperationsException | UnsupportedAritmeticOperationsException e) {
+            expectedException = (UnsupportedCalculatorOperationsException) e;
         }
         //then
         assertThat(expectedException).isNotNull();
