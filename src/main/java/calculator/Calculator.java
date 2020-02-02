@@ -9,6 +9,11 @@ public class Calculator {
     double value = 0;
     HashMap<String, ICalculatorActionStrategy> strategies = new HashMap<>();
 
+    public Calculator(double startValue) {
+        this();
+        value = startValue;
+    }
+
     public Calculator() {
         strategies.put("+", new AddStrategy());
         strategies.put("*", new MultiplyStrategy());
@@ -17,6 +22,7 @@ public class Calculator {
         strategies.put("^", new PowStrategy());
         strategies.put("%", new SqrtStrategy());
     }
+
 
     public double execute(String command) throws Exception {
 
