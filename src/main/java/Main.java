@@ -13,7 +13,7 @@ public class Main {
                 Scanner sc = new Scanner(System.in);
                 String command = sc.nextLine();
                 if (command.equals("exit")) {
-                    System.out.println(calculator.getValue());
+                    System.out.println("Wynik: " + calculator.getValue());
                     break;
                 }
                 calculator.validation(command);
