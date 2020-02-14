@@ -24,7 +24,6 @@ public class Main {
 
         Calculator calculator = new Calculator(startValue);
         Scanner scanner = new Scanner(System.in);
-        LinkedList<Double> listOfResults = new LinkedList<Double>();
 
         while (true){
             System.out.println("Podaj komendę(dodawanie, odejmowanie, dzielenie, mnożenie, total, exit, back, redo): ");
@@ -37,16 +36,16 @@ public class Main {
                 System.out.println("Wynikiem działań jest: " + calculator.getResult());
                 continue;
             } else if (userChoice.equals("back")){
-                listOfResults.removeLast();
-                System.out.println("Wynikiem działania po powrocie jest: " + listOfResults.getLast());
+                //listOfResults.removeLast();
+                calculator.back();
+                //System.out.println("Wynikiem działania po powrocie jest: " + calculator.getResult());
                 continue;
-            } else if (userChoice.equals("rozmiar stacka")){
-                System.out.println("Rozmiar stacka: " + listOfResults.size());
+            } else if (userChoice.equals("redo")){
+                calculator.redo();
                 continue;
             }
             try {
                 System.out.println("Wynikiem działania jest: " + calculator.execute(userChoice));
-                listOfResults.addLast(calculator.getResult());
             } catch (UnsupportedArithmeticOperationException e) {
                 System.out.println("Podałeś zły znak działania, spróbuj jedną z następujących" + calculator.getAvailableStringCalculator());
             } catch (UnsupportedCalculatorOperationException e) {

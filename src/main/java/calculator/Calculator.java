@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 public class Calculator {
 
     HashMap<String, ICalculationActionStrategy> strategies = new HashMap<>();
-    double result;
-    private LinkedList<Object> list = new LinkedList<Object>();
-
+    double result = 0;
+    double temp;
+    LinkedList<Double> listOfResults = new LinkedList<Double>();
 
     public Calculator(double startValue) {
         this();
@@ -38,14 +38,33 @@ public class Calculator {
         String[] splitCommand = command.split(" ");
         String operator = splitCommand[0];
         double number = Double.parseDouble(splitCommand[1]);
-        return result = strategies.getOrDefault(operator, new UnsupportedArithmeticStrategy()).calculate(result, number);
+        result = strategies.getOrDefault(operator, new UnsupportedArithmeticStrategy()).calculate(result, number);
+        listOfResults.addFirst(result);
+        return result;
     }
 
     public double getResult() {
         return result;
     }
-    public void result(){
+    public void back(){
 
+        if (listOfResults.size() == 0){
+            System.out.println("Nie można wrócić do poprzedniego wyniku");
+        }
+        if (listOfResults.size() >= 1) {
+            temp = listOfResults.getFirst();
+            listOfResults.removeFirst();
+        }
+        this.result = listOfResults.getFirst();
+        System.out.println("Powrócono do poprzedniego wyniku: " + result);
+
+    }
+
+    public void redo(){
+
+        listOfResults.addFirst(temp);
+        this.result = listOfResults.getFirst();
+        System.out.println("Odwrócono funkcję back i wrócono do wyniku: " +result);
     }
 
 
