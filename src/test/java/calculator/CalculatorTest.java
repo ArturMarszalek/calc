@@ -86,7 +86,7 @@ void shouldThrowAnExceptionWhenPatterIsInvalid() throws UnsupportedCalculatorOpe
     void shouldBackToPreviousValue() throws Exception {
         calculator.execute("+ 3");
         calculator.execute("+ 5");
-        calculator.back();
+        // calculator.back();
         assertThat(calculator.result).isEqualTo(3);
     }
 

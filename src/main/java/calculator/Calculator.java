@@ -4,14 +4,15 @@ package calculator;
 import strategy.*;
 
 import java.util.HashMap;
-import java.util.Stack;
+import java.util.LinkedList;
 import java.util.regex.Pattern;
 
 public class Calculator {
 
     HashMap<String, ICalculationActionStrategy> strategies = new HashMap<>();
     double result;
-    Stack<Double> listOfResults = new Stack();
+    private LinkedList<Object> list = new LinkedList<Object>();
+
 
     public Calculator(double startValue) {
         this();
@@ -34,29 +35,34 @@ public class Calculator {
     public double execute(String command) throws UnsupportedCalculatorOperationException, UnsupportedArithmeticOperationException {
 
         validCommand(command);
-        listOfResults.push(result);
         String[] splitCommand = command.split(" ");
         String operator = splitCommand[0];
         double number = Double.parseDouble(splitCommand[1]);
         return result = strategies.getOrDefault(operator, new UnsupportedArithmeticStrategy()).calculate(result, number);
     }
-    public void back() {
-        result = listOfResults.peek();
-        listOfResults.pop();
 
-    }
-
-    public double getTotal() {
+    public double getResult() {
         return result;
     }
+    public void result(){
 
-    public void validCommand(String command) throws UnsupportedCalculatorOperationException {
-        // Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/] \\d*.?\\d+$");
-        Pattern pattern1 = Pattern.compile("(\\S+) \\d*\\.?\\d+");
-        if (!pattern1.matcher(command).matches()) {
+    }
+
+
+
+    // LinkedList - do przodu & do tyłu - zrobić tak aby
+//    public double redo () {
+//
+//    }
+
+            Pattern pattern1 = Pattern.compile("(\\S+) \\d*\\.?\\d+");
+            public void validCommand(String command) throws UnsupportedCalculatorOperationException {
+                // Pattern pattern = Pattern.compile("[\\^,\\!,\\+,\\-,*,\\/] \\d*.?\\d+$");
+                if (!pattern1.matcher(command).matches()) {
             throw new UnsupportedCalculatorOperationException();
         }
     }
+
 }
 
 // METODA ROBIENIA SWITCH / CASE
